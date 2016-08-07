@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: 'servers#index'
 
   get '/servers/view' => 'servers#view'

@@ -8,6 +8,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'will_paginate-bootstrap'
+gem 'devise'
 gem 'jbuilder', '~> 2.0'
 group :development, :test do
   gem 'byebug'

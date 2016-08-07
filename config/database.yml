@@ -29,4 +29,10 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  database: mc_list
+  username: renualuser1
+  password: sTHACEeB6PnGxKCg2CmA
+  host: renualdb1.cp4ag446rafh.us-east-1.rds.amazonaws.com
+  port: 3306
