@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Minecraft PE Servers</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <%= stylesheet_link_tag('/css/bootstrap.min.css') %>
+  <%= stylesheet_link_tag('/css/stylesheet.css') %>
+  <%= stylesheet_link_tag('/css/font-awesome.min.css') %>
+  <link href="https://fonts.googleapis.com/css?family=Anton%7cMuli:300,400,400italic,300italic%7cOswald" rel="stylesheet" type="text/css">
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render('layouts/navigation') %>
+
+  <div id="content">
+    <%= content_for?(:content) ? yield(:content) : yield %>
+  </div>
+
+<%= render('layouts/footer') %>
+
+</body>
+</html>
