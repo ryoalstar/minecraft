@@ -10,6 +10,19 @@ class ServersController < ApplicationController
   end
 
   def view
+    @server = Server.find(params[:id])
+  end
+
+  def vote
+    @server = Server.find(params[:id])
+    if verify_solvemedia_puzzle
+      flash[:notice] = "Succesfully voted!"
+    else
+      flash[:error] = "Error, invalid voting captcha!"
+    end
+
+    redirect_to('/server/'+params[:id])
+
 
   end
 end

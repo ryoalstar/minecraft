@@ -2,44 +2,42 @@
 
   <div class="row">
     <div class="col-md-12 text-right">
-      <h1 class="page_header">Minecraft PE Servers</h1>
+      <h1 class="page_header"><%= @server.name %></h1>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-4">
       <div class="panel panel-default">
-        <div class="panel-heading"><i class="fa fa-server"></i> Kingdoms Server</div>
+        <div class="panel-heading"><i class="fa fa-server"></i> <%= @server.name %></div>
         <table class="table table-hover table-striped">
           <tr>
-            <td colspan="2"><i class="fa fa-info-circle"></i><strong>Server Information</strong></td>
+            <td colspan="2"><i class="fa fa-info-circle"></i><strong> Server Information</strong></td>
           </tr>
           <tr>
             <td><strong>Owner</strong></td>
-            <td>King Fox</td>
+            <td><%= @server.owner %></td>
           </tr>
           <tr>
             <td><strong>Status</strong></td>
-            <td><span class="label label-success">Online</span></td>
+            <td><span class="label <%= @server.status == 1 ? "label-success" : "label-danger" %>"><%= @server.status == 1 ? "Online" : "Offline" %></td>
           </tr>
           <tr>
             <td><strong>IP</strong></td>
-            <td>play.kingdomscraft.net</td>
+            <td><%= @server.ip %></td>
           </tr>
           <tr>
             <td><strong>Port</strong></td>
-            <td>19192</td>
+            <td><%= @server.port %></td>
           </tr>
-          <tr>
-            <td><strong>Location</strong></td>
-            <td><img src="assets/img/flag.png"> Canada</td>
-          </tr>
+          <% unless @server.website.nil? %>
           <tr>
             <td><strong>Website</strong></td>
-            <td><a href="#">www.kingdomscraft.net</a></td>
+            <td><%= link_to @server.website, 'http://' + @server.website, :rel => 'nofollow' %></td>
           </tr>
+          <% end %>
           <tr>
-            <td colspan="2"><i class="fa fa-bar-chart-o"></i><strong>Server Statistics</strong></td>
+            <td colspan="2"><i class="fa fa-bar-chart-o"></i><strong> Server Statistics</strong></td>
           </tr>
           <tr>
             <td><strong>Rank</strong></td>
@@ -47,19 +45,11 @@
           </tr>
           <tr>
             <td><strong>Players</strong></td>
-            <td>200/250</td>
+            <td><%= @server.players %>/<%= @server.slots %></td>
           </tr>
           <tr>
             <td><strong>Votes</strong></td>
-            <td>11,500</td>
-          </tr>
-          <tr>
-            <td><strong>Uptime</strong></td>
-            <td>7d 3h 25m <span class="label label-success">100%</span></td>
-          </tr>
-          <tr>
-            <td><strong>Ping</strong></td>
-            <td><span class="label label-warning">75ms</span></td>
+            <td><%= @server.votes %></td>
           </tr>
         </table>
       </div>
@@ -67,12 +57,44 @@
     <div class="col-md-8">
       <div class="panel panel-default">
         <div class="panel-body">
-          <h2 class="text-center"><img src="assets/img/banner.png"></h2>
+          <h2 class="text-center"> <% if @server.banner != 'nobanner' %>
+                <%= image_tag('/banners/' + @server.banner, :width => 468, :height => 60, :display => 'block') %>
+            <% else %>
+                <%= image_tag('/banners/nobanner.png', :width => 468, :height => 60, :display => 'block') %>
+            <% end %></h2>
           <hr>
-          <p class="text-center"><a href="vote.php?id=1" class="btn btn-success btn-lg">Vote for Kingdoms Server</a></p>
+          <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
+          <%= content_tag(:div, flash[:error], :id => "flash_error", :style => 'color: red') if flash[:error] %>
+
+          <%= bootstrap_form_for(@server, as: 'server', url: '', method: 'post') do |f| %>
+              <div class="field">
+                <label>Ingame username</label>
+                <input type="text" class="form-control" style="max-width: 43%">
+                </input>
+              </div>
+             <br>
+
+              <div class="actions">
+                <p style="color: black !important;">
+                  <%= solvemedia_puzzle %>
+                </p>
+
+                <noscript>
+                  <p>We apologize, but JavaScript is required order to vote.</p>
+                </noscript>
+
+                <br>
+                <%= f.submit 'Vote for ' + @server.name, :class => 'btn btn-success btn-lg' %>
+              </div>
+          <% end %>
           <hr>
-          <p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+          <p>
+            <%= @server.description %>
+          </p>
+
         </div>
+
       </div>
     </div>
   </div>

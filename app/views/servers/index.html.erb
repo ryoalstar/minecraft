@@ -2,14 +2,18 @@
   <div class="row">
     <div class="col-md-12 text-center">
       <h1 class="page_header">Minecraft PE Servers</h1>
+      <% if @page == 0 %>
       <div class="panel panel-default">
-        <div class="panel-body">
-          <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
-          <h4>Welcome to the Best Minecraft Pocket Edition server list!</h4>
-          <p>You can find the most popular Minecraft PE servers to play. Find game mods like Hunger Games, Survival, Creative, and more! Discover the best multiplayer servers for Minecraft PE!</p>
-          <p>Minecraft Pocket Edition (MCPE) is the mobile verson of Minecraft developed by Mojang AB. it is available on Android, iOS, WIndows Phone, Windows 10, and Fire OS.</p>
-        </div>
+
+          <div class="panel-body">
+            <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
+            <h4>Welcome to the Best Minecraft Pocket Edition server list!</h4>
+            <p>You can find the most popular Minecraft PE servers to play. Find game mods like Hunger Games, Survival, Creative, and more! Discover the best multiplayer servers for Minecraft PE!</p>
+            <p>Minecraft Pocket Edition (MCPE) is the mobile verson of Minecraft developed by Mojang AB. it is available on Android, iOS, WIndows Phone, Windows 10, and Fire OS.</p>
+          </div>
+
       </div>
+      <% end %>
     </div>
   </div>
 
@@ -34,6 +38,7 @@
           <%= will_paginate :class => 'pagination pull-right', inner_window: 2, outer_window: 1, :renderer => BootstrapPagination::Rails %>
     </div>
   </div>
+  <h2 class="page_header" style="font-size:30px; text-align:left">Minecraft PE Servers<% if @page == 0 %> <% else %>, page <%= (@page.to_i + 1) %><%end%></h2>
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
@@ -52,20 +57,21 @@
               <% rank = rank + 1 %>
               <td class="text-center"><%= rank %></td>
               <td>
+                <a href="/server/<%= + s.id %>/">
                 <% if s.banner != 'nobanner' %>
                    <%= image_tag('/banners/' + s.banner, :width => 468, :height => 60, :display => 'block') %>
                     <% else %>
                     <%= image_tag('/banners/nobanner.png', :width => 468, :height => 60, :display => 'block') %>
                 <% end %>
+                 </a>
+
                 <br><br>
                 <h4 class="no-margin-top server-title"><%= s.ip %>:<%= s.port %></h4>
-                <p><%= simple_format(s.description) %><a href="">Read more</a>
+                <p><%= simple_format(s.description) %><a href="/server/<%= + s.id %>/">Read more</a>
               </td>
-
               <td class="text-center hidden-xs hidden-sm"><%= s.players %>/<%=s.slots %></td>
               <td class="text-center hidden-xs hidden-sm"><%= s.votes %></td>
-
-              <td class="text-center hidden-xs hidden-sm" style="color: <%= s.status == 1 ? "green" : "Offline" %>"><%= s.status == 1 ? "Online" : "Offline" %></td>
+              <td><span class="label <%= s.status == 1 ? "label-success" : "label-danger" %>"><%= s.status == 1 ? "Online" : "Offline" %></td>
             </tr>
           <% end %>
         </table>

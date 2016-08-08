@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module RailsDevise
   class Application < Rails::Application
+    config.solvemedia.ckey = "QpAz.2b2VFFWtPqzeGaLfPS0NjY1oBcz"
+    config.solvemedia.vkey = "IEbWquLALaR6nmACWPm4Z46Kvexp7VMG"
+    config.solvemedia.hkey = "IfHkZ8bX0Fgr5p-Wxj7H7vUj0bNFgSno"
 
     config.generators do |g|
       g.test_framework :rspec,

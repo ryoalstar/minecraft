@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   root to: 'servers#index'
 
-  get '/servers/view' => 'servers#view'
+  get '/faq' => 'static#faq'
+  get '/about' => 'static#about'
+
+  get '/server/:id/' => 'servers#view'
+  post '/server/:id/' => 'servers#vote'
   get '/user' => 'users#my_servers'
 
 end

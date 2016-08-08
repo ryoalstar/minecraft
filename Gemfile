@@ -10,6 +10,7 @@ gem 'will_paginate-bootstrap'
 gem 'bootstrap_form'
 gem 'devise'
 gem 'redis'
+gem 'solvemedia'
 gem 'redis-rails', '~> 4'
 gem 'jbuilder', '~> 2.0'
 group :development, :test do
@@ -32,9 +33,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
-end
-group :production do
-  gem 'puma'
 end
 group :test do
   gem 'capybara'
