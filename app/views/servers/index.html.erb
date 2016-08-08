@@ -4,6 +4,7 @@
       <h1 class="page_header">Minecraft PE Servers</h1>
       <div class="panel panel-default">
         <div class="panel-body">
+          <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
           <h4>Welcome to the Best Minecraft Pocket Edition server list!</h4>
           <p>You can find the most popular Minecraft PE servers to play. Find game mods like Hunger Games, Survival, Creative, and more! Discover the best multiplayer servers for Minecraft PE!</p>
           <p>Minecraft Pocket Edition (MCPE) is the mobile verson of Minecraft developed by Mojang AB. it is available on Android, iOS, WIndows Phone, Windows 10, and Fire OS.</p>
@@ -64,7 +65,7 @@
               <td class="text-center hidden-xs hidden-sm"><%= s.players %>/<%=s.slots %></td>
               <td class="text-center hidden-xs hidden-sm"><%= s.votes %></td>
 
-              <td class="text-center hidden-xs hidden-sm" style="color: <%= s.status == 1 ? "green" : "red" %>"><%= s.status == 1 ? "Online" : "Offline" %></td>
+              <td class="text-center hidden-xs hidden-sm" style="color: <%= s.status == 1 ? "green" : "Offline" %>"><%= s.status == 1 ? "Online" : "Offline" %></td>
             </tr>
           <% end %>
         </table>

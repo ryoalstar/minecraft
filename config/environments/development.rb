@@ -29,14 +29,15 @@ Rails.application.configure do
 
   config.action_controller.asset_host = 'cdn.minecraft-pe-servers.com'
 
+
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: "smtp.sendgrid.net",
     port: 587,
-    domain: Rails.application.secrets.domain_name,
+    domain: 'minecraft-pe-servers.com',
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: Rails.application.secrets.email_provider_username,
-    password: Rails.application.secrets.email_provider_password
+    user_name: 'app54808245@heroku.com',
+    password: 'hxhdkaq89856'
   }
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }

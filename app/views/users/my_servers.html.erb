@@ -25,46 +25,16 @@
             <th class="text-center">Edit</th>
             <th class="text-center">Remove</th>
           </tr>
-          <tr>
-            <td class="text-center">1</td>
-            <td><h4 class="no-margin">Kingdoms Craft</h4></td>
-            <td><h4 class="no-margin">play.kingdomscraft.net:19192</h4></td>
-            <td class="text-center">1,500</td>
-            <td class="text-center"><a href="edit.php"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
-            <td class="text-center"><a href="edit.php"><i class="fa fa-times-circle fa-lg"></i></a></td>
-          </tr>
-          <tr>
-            <td class="text-center">2</td>
-            <td><h4 class="no-margin">Kingdoms Craft</h4></td>
-            <td><h4 class="no-margin">play.kingdomscraft.net:19192</h4></td>
-            <td class="text-center">1,500</td>
-            <td class="text-center"><a href="edit.php"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
-            <td class="text-center"><a href="edit.php"><i class="fa fa-times-circle fa-lg"></i></a></td>
-          </tr>
-          <tr>
-            <td class="text-center">3</td>
-            <td><h4 class="no-margin">Kingdoms Craft</h4></td>
-            <td><h4 class="no-margin">play.kingdomscraft.net:19192</h4></td>
-            <td class="text-center">1,500</td>
-            <td class="text-center"><a href="edit.php"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
-            <td class="text-center"><a href="edit.php"><i class="fa fa-times-circle fa-lg"></i></a></td>
-          </tr>
-          <tr>
-            <td class="text-center">4</td>
-            <td><h4 class="no-margin">Kingdoms Craft</h4></td>
-            <td><h4 class="no-margin">play.kingdomscraft.net:19192</h4></td>
-            <td class="text-center">1,500</td>
-            <td class="text-center"><a href="edit.php"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
-            <td class="text-center"><a href="edit.php"><i class="fa fa-times-circle fa-lg"></i></a></td>
-          </tr>
-          <tr>
-            <td class="text-center">5</td>
-            <td><h4 class="no-margin">Kingdoms Craft</h4></td>
-            <td><h4 class="no-margin">play.kingdomscraft.net:19192</h4></td>
-            <td class="text-center">1,500</td>
-            <td class="text-center"><a href="edit.php"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
-            <td class="text-center"><a href="edit.php"><i class="fa fa-times-circle fa-lg"></i></a></td>
-          </tr>
+          <% @servers.each do |s| %>
+              <tr>
+                <td class="text-center"><%= s.id %></td>
+                <td><h4 class="no-margin"><%= s.name %></h4></td>
+                <td><h4 class="no-margin"><%= s.ip %>:<%=s.port%></h4></td>
+                <td class="text-center"><%= s.players %></td>
+                <td class="text-center"><a href="/edit"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
+                <td class="text-center"><a href="/edit"><i class="fa fa-times-circle fa-lg"></i></a></td>
+              </tr>
+          <% end %>
         </table>
         <div class="panel-footer text-right">
           <a href="add_server.php" class="btn btn-success btn-sm add-btn"><i class="fa fa-plus-circle"></i> Add Server</a>
