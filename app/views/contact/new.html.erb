@@ -24,7 +24,8 @@
                 <%= label_tag 'comments', 'Description' %>
                 <%= text_area_tag 'comments', nil, class: 'form-control', rows: 4, placeholder: 'Please explain what you require assistance with.' %>
               </div>
-              <%= submit_tag nil, class: 'btn btn-default btn-about pull-right' %>
+              <%= recaptcha_tags %>
+              <%= submit_tag nil, :class => 'btn btn-success btn-sm add-btn', :style => "display: block; margin-left: auto; margin-right: auto;" %>
           <% end %>
 
           <%= content_tag(:div, flash[:error], :id => "flash_error", :style => 'color: red') if flash[:error] %>

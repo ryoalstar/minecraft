@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root to: 'servers#index'
 
+
   get '/faq' => 'faq#index'
   get '/contact' => 'contact#new'
   post '/contact' => 'contact#submit'

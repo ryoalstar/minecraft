@@ -13,7 +13,7 @@
           My Servers
           <div class="pull-right">
             <a href="/server/new" class="btn btn-success btn-sm add-btn"><i class="fa fa-plus-circle"></i> Add Server</a>
-            <a href="changepass.php" class="btn btn-success btn-sm add-btn"><i class="fa fa-lock"></i> Change Password</a>
+            <a href="/users/edit" class="btn btn-success btn-sm add-btn"><i class="fa fa-lock"></i> Change Password</a>
           </div>
         </div>
         <table class="table table-striped">
@@ -36,10 +36,12 @@
               </tr>
           <% end %>
         </table>
-        <div class="panel-footer text-right">
-          <a href="/server/new" class="btn btn-success btn-sm add-btn"><i class="fa fa-plus-circle"></i> Add Server</a>
-          <a href="changepass.php" class="btn btn-success btn-sm add-btn"><i class="fa fa-lock"></i> Change Password</a>
-        </div>
+        <% if @servers.count > 0 %>
+          <div class="panel-footer text-right">
+            <a href="/server/new" class="btn btn-success btn-sm add-btn"><i class="fa fa-plus-circle"></i> Add Server</a>
+            <a href="/users/edit" class="btn btn-success btn-sm add-btn"><i class="fa fa-lock"></i> Change Password</a>
+          </div>
+        <% end %>
 
       </div>
     </div>

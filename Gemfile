@@ -15,6 +15,7 @@ gem 'redis-rails', '~> 4'
 gem 'jbuilder', '~> 2.0'
 gem 'paperclip', '~> 5.0.0'
 gem 'aws-sdk', '>= 2.0.34'
+gem "recaptcha", require: "recaptcha/rails"
 
 group :development, :test do
   gem 'byebug'

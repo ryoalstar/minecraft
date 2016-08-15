@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def modify_password
-
+    @user = current_user
   end
 
   def recover_password
