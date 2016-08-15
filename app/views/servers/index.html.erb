@@ -58,8 +58,8 @@
               <td class="text-center"><%= rank %></td>
               <td>
                 <a href="/server/<%= + s.id %>/">
-                <% if s.banner != 'nobanner' %>
-                   <%= image_tag('/banners/' + s.banner, :width => 468, :height => 60, :display => 'block') %>
+                <% if s.banner.url != '/images/nobanner' %>
+                   <%= image_tag(s.banner.url, :width => 468, :height => 60, :display => 'block') %>
                     <% else %>
                     <%= image_tag('/banners/nobanner.png', :width => 468, :height => 60, :display => 'block') %>
                 <% end %>
@@ -67,7 +67,7 @@
 
                 <br><br>
                 <h4 class="no-margin-top server-title"><%= s.ip %>:<%= s.port %></h4>
-                <p><%= simple_format(s.description) %><a href="/server/<%= + s.id %>/">Read more</a>
+                <p><%= simple_format(s.short_description) %><a href="/server/<%= + s.id %>/">Read more</a>
               </td>
               <td class="text-center hidden-xs hidden-sm"><%= s.players %>/<%=s.slots %></td>
               <td class="text-center hidden-xs hidden-sm"><%= s.votes %></td>

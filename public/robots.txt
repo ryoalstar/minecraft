@@ -3,3 +3,7 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 # User-agent: *
 # Disallow: /
+
+Disallow: /user
+Disallow: /users/sign_in
+Disallow: /users/sign_up

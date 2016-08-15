@@ -5,6 +5,6 @@ class StaticController < ApplicationController
   end
 
   def faq
-
+    
   end
 end

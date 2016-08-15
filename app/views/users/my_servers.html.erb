@@ -12,7 +12,7 @@
         <div class="panel-heading">
           My Servers
           <div class="pull-right">
-            <a href="add_server.php" class="btn btn-success btn-sm add-btn"><i class="fa fa-plus-circle"></i> Add Server</a>
+            <a href="/server/new" class="btn btn-success btn-sm add-btn"><i class="fa fa-plus-circle"></i> Add Server</a>
             <a href="changepass.php" class="btn btn-success btn-sm add-btn"><i class="fa fa-lock"></i> Change Password</a>
           </div>
         </div>
@@ -31,15 +31,16 @@
                 <td><h4 class="no-margin"><%= s.name %></h4></td>
                 <td><h4 class="no-margin"><%= s.ip %>:<%=s.port%></h4></td>
                 <td class="text-center"><%= s.players %></td>
-                <td class="text-center"><a href="/edit"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
-                <td class="text-center"><a href="/edit"><i class="fa fa-times-circle fa-lg"></i></a></td>
+                <td class="text-center"><a href="/server/<%=s.id%>/edit"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
+                <td class="text-center"><a href="/server/<%=s.id%>/destroy"><i class="fa fa-times-circle fa-lg"></i></a></td>
               </tr>
           <% end %>
         </table>
         <div class="panel-footer text-right">
-          <a href="add_server.php" class="btn btn-success btn-sm add-btn"><i class="fa fa-plus-circle"></i> Add Server</a>
+          <a href="/server/new" class="btn btn-success btn-sm add-btn"><i class="fa fa-plus-circle"></i> Add Server</a>
           <a href="changepass.php" class="btn btn-success btn-sm add-btn"><i class="fa fa-lock"></i> Change Password</a>
         </div>
+
       </div>
     </div>
   </div>

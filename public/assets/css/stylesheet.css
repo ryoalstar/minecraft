@@ -102,6 +102,7 @@ footer {
     padding-top: 25px;
     padding-bottom: 25px;
     margin-top: 200px;
+
 }
 footer p {
     color: #fff;
@@ -182,6 +183,12 @@ footer ul li a:hover, footer ul li a:focus {
     font-size: 24px;
     text-shadow: none;
     margin:0;
+}
+
+.about_header {
+    height: 50px;
+    width: 100%;
+    background-color: #3c763d;
 }
 
 div.g-recaptcha {

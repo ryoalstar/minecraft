@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <h1 class="page_header">Contact us</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">Contact form</div>
+        <div class="panel-body">
+          <%= form_tag('/contact') do %>
+              <div class="form-group">
+                <%= label_tag 'name', 'Name' %>
+                <%= text_field_tag 'name', nil, class: 'form-control', placeholder: 'Your Name', autofocus: true%>
+              </div>
+              <div class="form-group">
+                <%= label_tag 'email', 'Email' %>
+                <%= email_field_tag 'email', nil, class: 'form-control', placeholder: 'Your Email Address' %>
+              </div>
+              <div class="form-group">
+                <%= label_tag 'comments', 'Description' %>
+                <%= text_area_tag 'comments', nil, class: 'form-control', rows: 4, placeholder: 'Please explain what you require assistance with.' %>
+              </div>
+              <%= submit_tag nil, class: 'btn btn-default btn-about pull-right' %>
+          <% end %>
+
+          <%= content_tag(:div, flash[:error], :id => "flash_error", :style => 'color: red') if flash[:error] %>
+          <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
+          <%= content_tag(:div, flash[:alert], :id => "flash_alert", :style => 'color: red') if flash[:alert] %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

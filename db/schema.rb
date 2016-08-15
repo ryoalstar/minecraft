@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20160808184944) do
     t.string  "api_key",      limit: 60
     t.integer "comments",     limit: 4,     default: 0
     t.text    "website",      limit: 65535
+    t.string  "short_description",  limit: 60,    default: "0"
   end
 
   add_index "servers", ["ip"], name: "ip", unique: true, using: :btree

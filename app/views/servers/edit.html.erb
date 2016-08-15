@@ -1,0 +1,59 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <h1 class="page_header">Editing <%= @server.name %></h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">Editing: <%= @server.name%></div>
+        <div class="panel-body">
+          <%= bootstrap_form_for(@server, as: 'server', url: '', html: { multipart: true } ) do |f| %>
+              <% if @server.errors.any? %>
+                  <ul>
+                    <% @server.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+              <% end %>
+              <div class="field">
+                <%= f.text_field :name, label: 'Server name', autofocus: true %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :ip, label: 'Server ip' %>
+              </div>
+
+              <div class="field">
+                <%= f.number_field :port, label: 'Port' %>
+              </div>
+
+              <div class="field">
+                <%= f.file_field :banner, label: 'Upload Banner' %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :short_description, label: 'Short Description' %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :description, label: 'Description' %>
+              </div>
+
+              <div class="actions ">
+                <%= f.submit 'Save Changes', :class => 'btn btn-success btn-sm add-btn' %>
+              </div>
+          <% end %>
+          <%= content_tag(:div, flash[:error], :id => "flash_error", :style => 'color: red') if flash[:error] %>
+          <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
+          <%= content_tag(:div, flash[:alert], :id => "flash_alert", :style => 'color: red') if flash[:alert] %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
