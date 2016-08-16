@@ -11,12 +11,13 @@
     </div>
     <div class="collapse navbar-collapse" id="primary-nav">
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="/server/new"><i class="fa fa-plus-circle"></i> Add Server</a></li>
         <% if current_user.nil? %>
           <li><a href="/users/sign_in"><i class="fa fa-user"></i> Sign In</a></li>
             <li><a href="/users/sign_up"><i class="fa fa-plus-circle"></i> Need an Account? Register Now!</a></li>
             <% else %>
             <li><a href="/user"><i class="fa fa-user"></i> My Profile</a></li>
-            <li><a href="/server/new"><i class="fa fa-plus-circle"></i> Add Server</a></li>
+
            <li><a href="/users/sign_out"><i class="fa fa-user"></i> Sign Out</a></li>
         <% end %>
       </ul>

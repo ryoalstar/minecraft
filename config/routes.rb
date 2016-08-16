@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get '/faq' => 'faq#index'
   get '/contact' => 'contact#new'
   post '/contact' => 'contact#submit'
-  get '/about' => 'static#about'
-
+  get '/privacy-policy' => 'static#privacy_policy'
+  get '/terms' => 'static#terms_of_service'
   get '/server/new' => 'servers#new'
   post '/server/new' => 'servers#create'
   get '/server/:id/' => 'servers#view'

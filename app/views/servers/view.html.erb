@@ -1,3 +1,5 @@
+<% content_for :title, @server.name + " - Minecraft PE Servers List" %>
+
 <div class="container">
 
   <div class="row">
@@ -57,12 +59,11 @@
     <div class="col-md-8">
       <div class="panel panel-default">
         <div class="panel-body">
-          <h2 class="text-center"> <% if @server.banner != 'nobanner' %>
-                <%= image_tag('/banners/' + @server.banner, :width => 468, :height => 60, :display => 'block') %>
-            <% else %>
-                <%= image_tag('/banners/nobanner.png', :width => 468, :height => 60, :display => 'block') %>
-            <% end %></h2>
-          <hr>
+          <% if @server.banner.url != '/images/nobanner' %>
+              <%= image_tag(@server.banner.url, :width => 468, :height => 60, :display => 'block') %>
+          <% else %>
+              <%= image_tag('/banners/nobanner.png', :width => 468, :height => 60, :display => 'block') %>
+          <% end %>
           <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
           <%= content_tag(:div, flash[:error], :id => "flash_error", :style => 'color: red') if flash[:error] %>
 
