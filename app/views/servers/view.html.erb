@@ -4,6 +4,7 @@
 
   <div class="row">
     <div class="col-md-12 text-right">
+
       <h1 class="page_header"><%= @server.name %></h1>
     </div>
   </div>
@@ -37,6 +38,12 @@
             <td><strong>Website</strong></td>
             <td><%= link_to @server.website, 'http://' + @server.website, :rel => 'nofollow' %></td>
           </tr>
+          <% end %>
+          <% unless @server.last_pinged.nil? %>
+              <tr>
+                <td><strong>Last Pinged</strong></td>
+                <td><%= time_ago_in_words(Time.now.ago(Time.now.to_i - @server.last_pinged.to_i)) %> ago</td>
+              </tr>
           <% end %>
           <tr>
             <td colspan="2"><i class="fa fa-bar-chart-o"></i><strong> Server Statistics</strong></td>
@@ -99,5 +106,6 @@
       </div>
     </div>
   </div>
+
 
 </div>

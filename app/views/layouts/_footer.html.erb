@@ -1,10 +1,11 @@
 <footer>
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <%= image_tag('/img/sitemap.png') %>
+      <div class="col-md-3 left-col">
         <p>
+        <h3 class="footer-header sitemap">SITE MAP</h3>
         <ul>
+
           <li><a href="/">Browse MCPE Servers</a></li>
           <li><a href="/user/">Manage Servers</a></li>
           <li><a href="/">Search Servers</a></li>
@@ -14,18 +15,18 @@
         </p>
       </div>
       <div class="col-md-6 center-col">
-        <%= image_tag('/img/footer_mid.png') %>
+        <%= image_tag('footer_mid.png') %>
         <p>&copy; RenualSoftware B.V. 2016</p>
         <p>Minecraft PE and associated Minecraft PE images are copyright of Mojang AB.<br>
           Minecraft PE Servers are not affiliated with Minecraft PE or Mojang AB.</p>
       </div>
       <div class="col-md-3 right-col">
-        <%= image_tag('/img/pelinks.png') %>
+        <h3 class="footer-header footer-links">MINECRAFT PE LINKS</h3>
         <p>
         <ul>
-          <li><a href="https://www.minecraft.net">Minecraft PE Website</a></li>
-          <li><a href="https://www.minecraftforum.net">Minecraft PE Forums</a></li>
-          <li><a href="http://minecraftpocketedition.wikia.com/wiki/Minecraft_Pocket_Edition_Wiki">Minecraft PE Wiki</a></li>
+          <li><%= link_to 'Minecraft PE Website', 'https://www.minecraft.net' %></li>
+          <li><%= link_to 'Minecraft PE Forums', 'https://www.minecraftforum.net' %></li>
+          <li><%= link_to 'Minecraft PE Wiki', 'http://minecraftpocketedition.wikia.com/wiki/Minecraft_Pocket_Edition_Wiki' %></li>
         </ul>
         </p>
       </div>
@@ -45,6 +46,5 @@
 </footer>
 
 
-<%= javascript_include_tag('/js/jquery-1.11.1.min.js')%>
-<%= javascript_include_tag('/js/bootstrap.js')%>
-<%= javascript_include_tag('/js/custom.js')%>
+<%= javascript_include_tag('jquery-1.11.1.min.js')%>
+<%= javascript_include_tag('bootstrap.js')%>

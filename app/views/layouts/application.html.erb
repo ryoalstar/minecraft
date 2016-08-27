@@ -5,10 +5,21 @@
   <title><%= yield(:title) %></title>
   <meta name="description" content="">
   <meta name="author" content="">
-  <%= stylesheet_link_tag('/css/bootstrap.min.css') %>
-  <%= stylesheet_link_tag('/css/stylesheet.css') %>
-  <%= stylesheet_link_tag('/css/font-awesome.min.css') %>
+
+  <%= stylesheet_link_tag 'application' %>
+
+  <%= javascript_include_tag 'application' %>
+
   <link href="https://fonts.googleapis.com/css?family=Anton%7cMuli:300,400,400italic,300italic%7cOswald" rel="stylesheet" type="text/css">
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1892783997615818";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  <script src="https://apis.google.com/js/platform.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
