@@ -36,6 +36,25 @@
                   </div>
               <% end %>
             <% end %>
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1337" aria-expanded="false" aria-controls="collapseOne">
+                    Q: Where can I get the app?
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse1337" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <p><strong>Answer</strong>:<br>
+                    Obtaining the app is simple, simply visit one of the links below for your respective platform.
+                    <p><%= link_to image_tag('google-play') + '', 'https://play.google.com/store/apps/details?id=com.renualsoftware.minecraftpe.minecraftpeservers' %></p>
+                    <p><%= link_to image_tag('apple-store') + '', 'https://itunes.apple.com/us/app/best-servers-for-minecraft/id1066395765?mt=8' %></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

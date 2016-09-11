@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808184944) do
+ActiveRecord::Schema.define(version: 20160827041640) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "server_id", limit: 4,     default: 0, null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160808184944) do
     t.string "time",      limit: 45
   end
 
-  create_table "faq", force: :cascade do |t|
+  create_table "faqs", force: :cascade do |t|
     t.string "question", limit: 100
     t.string "answer",   limit: 350
   end
@@ -56,24 +56,26 @@ ActiveRecord::Schema.define(version: 20160808184944) do
   end
 
   create_table "servers", force: :cascade do |t|
-    t.string  "name",         limit: 45,                  null: false
-    t.string  "owner",        limit: 45
-    t.string  "ip",           limit: 60,    default: "",  null: false
-    t.integer "port",         limit: 4,     default: 0
-    t.string  "banner",       limit: 45
-    t.integer "players",      limit: 4,     default: 0
-    t.integer "slots",        limit: 4,     default: 0
-    t.text    "description",  limit: 65535
-    t.integer "status",       limit: 4,     default: 0
-    t.string  "version",      limit: 45,    default: "0"
-    t.integer "votes",        limit: 4,     default: 0
-    t.string  "last_pinged",  limit: 45,    default: "0"
-    t.string  "last_online",  limit: 45,    default: "0", null: false
-    t.integer "being_pinged", limit: 4,     default: 0
-    t.string  "api_key",      limit: 60
-    t.integer "comments",     limit: 4,     default: 0
-    t.text    "website",      limit: 65535
-    t.string  "short_description",  limit: 60,    default: "0"
+    t.string  "name",                limit: 45,                  null: false
+    t.string  "owner",               limit: 45
+    t.string  "ip",                  limit: 60,    default: "",  null: false
+    t.integer "port",                limit: 4,     default: 0
+    t.string  "banner",              limit: 45
+    t.integer "players",             limit: 4,     default: 0
+    t.integer "slots",               limit: 4,     default: 0
+    t.text    "description",         limit: 65535
+    t.integer "status",              limit: 4,     default: 0
+    t.string  "version",             limit: 45,    default: "0"
+    t.integer "votes",               limit: 4,     default: 0
+    t.string  "last_pinged",         limit: 45,    default: "0"
+    t.string  "last_online",         limit: 45,    default: "0", null: false
+    t.integer "being_pinged",        limit: 4,     default: 0
+    t.string  "api_key",             limit: 60
+    t.integer "comments",            limit: 4,     default: 0
+    t.text    "website",             limit: 65535
+    t.text    "short_description",   limit: 65535
+    t.string  "banner_file_name",    limit: 45
+    t.string  "banner_content_type", limit: 45
   end
 
   add_index "servers", ["ip"], name: "ip", unique: true, using: :btree
@@ -104,6 +106,8 @@ ActiveRecord::Schema.define(version: 20160808184944) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
+    t.string   "provider",               limit: 255
+    t.string   "uid",                    limit: 255
   end
 
   add_index "users", ["email", "id"], name: "email", using: :btree

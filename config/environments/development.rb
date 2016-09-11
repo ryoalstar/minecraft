@@ -25,9 +25,9 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
-
-  config.action_controller.asset_host = 'cdn.minecraft-pe-servers.com'
+  config.assets.debug = false
+  config.assets.enabled = true
+  config.assets.initialize_on_precompile = true
 
 
   config.action_mailer.smtp_settings = {
@@ -42,6 +42,7 @@ Rails.application.configure do
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
+
   config.action_mailer.raise_delivery_errors = true
   # Send email in development mode?
   config.action_mailer.perform_deliveries = true

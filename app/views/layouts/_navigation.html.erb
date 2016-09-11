@@ -11,6 +11,9 @@
     </div>
     <div class="collapse navbar-collapse" id="primary-nav">
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="fb-like fb-button" style="padding-top:15px; padding-bottom:15px" data-href="https://www.facebook.com/mcpelist" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+        </li>
         <li><a href="/server/new"><i class="fa fa-plus-circle"></i> Add Server</a></li>
         <% if current_user.nil? %>
           <li><a href="/users/sign_in"><i class="fa fa-user"></i> Sign In</a></li>
@@ -28,10 +31,10 @@
 <nav class="seconday-nav">
   <div class="container">
     <div class="btn-group btn-group-justified">
-      <a href="/user" class="btn btn-link"><i class="fa fa-star"></i> My Servers</a>
-      <a href="/" class="btn btn-link"><i class="fa fa-search"></i> Browse Servers</a>
-      <a href="/faq" class="btn btn-link"><i class="fa fa-question-circle"></i> F.A.Q.</a>
-      <a href="/contact" class="btn btn-link"><i class="fa fa-info-circle"></i> Contact us</a>
+      <%= link_to content_tag(:i, nil, class: "fa fa-info-circle") + ' My Servers', '/user', class: 'btn btn-link' %>
+      <%= link_to content_tag(:i, nil, class: "fa fa-search") + ' Browse Servers', '/', class: 'btn btn-link' %>
+      <%= link_to content_tag(:i, nil, class: "fa fa-question-circle") + ' F.A.Q.', '/faq', class: 'btn btn-link' %>
+      <%= link_to content_tag(:i, nil, class: "fa fa-info-circle") + ' Contact Us', '/contact', class: 'btn btn-link' %>
     </div>
   </div>
 </nav>
