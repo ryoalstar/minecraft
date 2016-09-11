@@ -13,6 +13,12 @@ module RailsDevise
     config.solvemedia.vkey = "IEbWquLALaR6nmACWPm4Z46Kvexp7VMG"
     config.solvemedia.hkey = "IfHkZ8bX0Fgr5p-Wxj7H7vUj0bNFgSno"
 
+    Recaptcha.configure do |config|
+    config.private_key = "6LcWqicTAAAAAHJ-o-GqIY0mXpGNGa7Lns0h596R"
+    config.public_key = "6LcWqicTAAAAAGW_iZkPUvB9i7kkDRldNOkqLX3D"
+    end
+
+
     config.generators do |g|
       g.test_framework :rspec,
         fixtures: true,

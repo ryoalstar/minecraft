@@ -8,6 +8,7 @@ class Server < ActiveRecord::Base
                     path: 'servers/:attachment/resized:hash.:extension'
 
   validates_attachment_content_type :banner, content_type: /\Aimage\/.*\Z/
+  has_many :tags
 
   def s3_credentials
     {:bucket => "cdn.minecraft-pe-servers.com", :access_key_id => "AKIAJQPU6FCAI3OMHT5A", :secret_access_key => "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"}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160827041640) do
+ActiveRecord::Schema.define(version: 20160911183737) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "server_id", limit: 4,     default: 0, null: false
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20160827041640) do
     t.string  "owner",               limit: 45
     t.string  "ip",                  limit: 60,    default: "",  null: false
     t.integer "port",                limit: 4,     default: 0
-    t.string  "banner",              limit: 45
+    t.string  "banner_old",          limit: 45
     t.integer "players",             limit: 4,     default: 0
     t.integer "slots",               limit: 4,     default: 0
     t.text    "description",         limit: 65535
@@ -91,6 +91,11 @@ ActiveRecord::Schema.define(version: 20160827041640) do
 
   add_index "sessions", ["session_type"], name: "session_type", using: :btree
   add_index "sessions", ["session_uuid"], name: "session_uuid_idx", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.integer "server_id", limit: 4
+    t.string  "tag",       limit: 255
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",               limit: 45
