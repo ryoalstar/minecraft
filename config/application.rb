@@ -24,6 +24,13 @@ module RailsDevise
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
+    DisqusRails.setup do |config|
+      config::SHORT_NAME = "Minecraft-PE-Servers"
+      config::SECRET_KEY = "dG8PyPQcmqn4YAyJr4EO2kCmxPulZEiljIbHbDxyl50Uqy5ID8VZcjnhHsB8az1A"
+      config::PUBLIC_KEY = "haCmka8o4lyJVhpENwtURXc0qEHVGRgZrBbA4lh7ITqpmXCy3a3H6TWMDVBbYLVH"
+      config::ACCESS_TOKEN = "c33b8fc0d6474cea9ce1bd897952d511" #you got it, right? ;-)
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
