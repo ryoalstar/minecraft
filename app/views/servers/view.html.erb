@@ -17,11 +17,17 @@
           <%= content_tag(:div, flash[:error], :id => "flash_error", :style => 'color: red') if flash[:error] %>
 
 
-          <% if @server.banner.url != '/images/nobanner' %>
-              <%= image_tag(@server.banner.url, :width => 468, :height => 60, :display => 'block') %>
+          <% if @server.banner.url != 'nobanner' && !@server.banner.nil? %>
+              <a href = '/server/<%= @server.id%>'><%= image_tag @server.banner.url, :style => 'width:460px; height:68px;'%> </a>
           <% else %>
-              <%= image_tag('/banners/nobanner.png', :width => 468, :height => 60, :display => 'block') %>
-          <% end %><br>
+              <% if @server.banner_old != 'nobanner'%>
+                  <a href = '/server/<%= @server.id%>'><%= image_tag 'https://cdn.minecraft-pe-servers.com/banners/' + @server.banner_old,  :style => 'width:460px; height:68px;' %></a>
+              <% else %>
+                  <a href = '/server/<%= @server.id%>'><%= image_tag 'https://cdn.minecraft-pe-servers.com/banners/nobanner.png', :style => 'width:460px; height:68px;' %></a>
+              <% end %>
+          <% end %>
+
+          <br>
           <hr>
 
           <div id="description">
