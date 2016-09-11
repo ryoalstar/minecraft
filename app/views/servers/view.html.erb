@@ -4,12 +4,57 @@
 
   <div class="row">
     <div class="col-md-12 text-right">
-
-      <h1 class="page_header"><%= @server.name %></h1>
     </div>
   </div>
 
   <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2 class="page_header"><%= @server.name %></h2>
+
+
+          <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
+          <%= content_tag(:div, flash[:error], :id => "flash_error", :style => 'color: red') if flash[:error] %>
+
+          <p style="text-align: center">Server IP: <%= @server.ip %></p>
+
+          <% if @server.banner.url != '/images/nobanner' %>
+              <%= image_tag(@server.banner.url, :width => 468, :height => 60, :display => 'block') %>
+          <% else %>
+              <%= image_tag('/banners/nobanner.png', :width => 468, :height => 60, :display => 'block') %>
+          <% end %>
+          <br>
+          <hr>
+          <div id="description">
+            <p><%= @server.description %></p>
+            PigRaid is a fun and innovative MCPE (Minecraft Pocket Edition) Server Full of Fun Gameplay for all! See our Website for Details!
+          </div>
+          <hr>
+          <ul class="nav nav-tabs">
+            <li><a data-toggle="pill" href="#menu1">Comments</a></li>
+            <li><a data-toggle="pill" href="#menu2">Video</a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+              <h3>HOME</h3>
+              <p>Some content.</p>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+              <h3>Menu 1</h3>
+              <p>Some content in menu 1.</p>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+              <h3>Menu 2</h3>
+              <p>Some content in menu 2.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading"><i class="fa fa-server"></i> <%= @server.name %></div>
@@ -34,10 +79,10 @@
             <td><%= @server.port %></td>
           </tr>
           <% unless @server.website.nil? %>
-          <tr>
-            <td><strong>Website</strong></td>
-            <td><%= link_to @server.website, 'http://' + @server.website, :rel => 'nofollow' %></td>
-          </tr>
+              <tr>
+                <td><strong>Website</strong></td>
+                <td><%= link_to @server.website, 'http://' + @server.website, :rel => 'nofollow' %></td>
+              </tr>
           <% end %>
           <% unless @server.last_pinged.nil? %>
               <tr>
@@ -47,10 +92,6 @@
           <% end %>
           <tr>
             <td colspan="2"><i class="fa fa-bar-chart-o"></i><strong> Server Statistics</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Rank</strong></td>
-            <td>1</td>
           </tr>
           <tr>
             <td><strong>Players</strong></td>
@@ -63,49 +104,8 @@
         </table>
       </div>
     </div>
-    <div class="col-md-8">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <% if @server.banner.url != '/images/nobanner' %>
-              <%= image_tag(@server.banner.url, :width => 468, :height => 60, :display => 'block') %>
-          <% else %>
-              <%= image_tag('/banners/nobanner.png', :width => 468, :height => 60, :display => 'block') %>
-          <% end %>
-          <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
-          <%= content_tag(:div, flash[:error], :id => "flash_error", :style => 'color: red') if flash[:error] %>
-
-          <%= bootstrap_form_for(@server, as: 'server', url: '', method: 'post') do |f| %>
-              <div class="field">
-                <label>Ingame username</label>
-                <input type="text" class="form-control" style="max-width: 43%">
-                </input>
-              </div>
-             <br>
-
-              <div class="actions">
-                <p style="color: black !important;">
-                  <%= solvemedia_puzzle %>
-                </p>
-
-                <noscript>
-                  <p>We apologize, but JavaScript is required order to vote.</p>
-                </noscript>
-
-                <br>
-                <%= f.submit 'Vote for ' + @server.name, :class => 'btn btn-success btn-lg' %>
-              </div>
-          <% end %>
-          <hr>
-
-          <p>
-            <%= @server.description %>
-          </p>
-
-        </div>
-
-      </div>
-    </div>
   </div>
+
 
 
 </div>

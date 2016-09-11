@@ -95,6 +95,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    disqus_rails (0.0.6)
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
@@ -263,6 +264,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    meta-tags (2.2.0)
+      actionpack (>= 3.2.0)
     mime-types (2.6.2)
     mimemagic (0.3.1)
     mini_portile (0.6.2)
@@ -444,12 +447,14 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise
+  disqus_rails
   factory_girl_rails
   faker
   fog-aws
   high_voltage
   jquery-rails
   launchy
+  meta-tags
   mysql2
   omniauth-facebook
   omniauth-google-oauth2

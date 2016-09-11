@@ -5,12 +5,11 @@
         <p>
         <h3 class="footer-header sitemap">SITE MAP</h3>
         <ul>
-
-          <li><a href="/">Browse MCPE Servers</a></li>
-          <li><a href="/user/">Manage Servers</a></li>
-          <li><a href="/">Search Servers</a></li>
-          <li><a href="/faq">Help/FAQ</a></li>
-          <li><a href="/contact">Contact Us</a></li>
+          <li><%= link_to 'Browse MCPE Servers', '/' %></li>
+          <li><%= link_to 'Manage Servers', '/user/' %></li>
+          <li><%= link_to 'Search Servers', '/' %></li>
+          <li><%= link_to 'Help/FAQ', '/faq' %></li>
+          <li><%= link_to 'Contact Us', '/contact' %></li>
         </ul>
         </p>
       </div>
@@ -37,8 +36,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          <p>By using this site, you agree with our <a href="/terms" class="gold-link">Terms of Service</a>
-            and <a href="/privacy-policy" class="gold-link">Privacy Policy</a>
+          <p>By using this site, you agree with our <%= link_to 'Terms of Service', '/terms', :class => 'gold-link'%>
+            and <%= link_to 'Privacy Policy', '/privacy-policy', :class => 'gold-link'%>
         </div>
       </div>
     </div>
