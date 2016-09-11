@@ -44,6 +44,11 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails'
 end
+
+group :production do
+  gem 'puma'
+end
+
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
