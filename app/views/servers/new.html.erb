@@ -1,4 +1,5 @@
 <% content_for :title, "Register Server - Minecraft PE Servers List" %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
 
 <div class="container">
 
@@ -38,10 +39,12 @@
                 <%= f.text_field :description, label: 'Description' %>
               </div>
 
-              <div class="actions ">
+              <div class="actions">
                 <%= f.submit 'Save Changes', :class => 'btn btn-success btn-sm add-btn' %>
               </div>
+
           <% end %>
+
           <%= content_tag(:div, flash[:error], :id => "flash_error", :style => 'color: red') if flash[:error] %>
           <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
           <%= content_tag(:div, flash[:alert], :id => "flash_alert", :style => 'color: red') if flash[:alert] %>

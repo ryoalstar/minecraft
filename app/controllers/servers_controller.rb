@@ -21,7 +21,14 @@ class ServersController < ApplicationController
     if current_user.nil?
       redirect_to '/users/sign_in'
     end
-    @server = Server.create(server_params.merge(:owner => current_user.username, :last_online => Time.now.to_i))
+    @server = Server.new(server_params.merge(:owner => current_user.username, :last_online => Time.now.to_i))
+    begin
+      RestClient.get 'http://minecraftpingerapi.herokuapp.com/ping.php?ip='+@server.ip+"&port="+@server.port
+    rescue
+      flash[:error] = 'The server you are trying to add is not currently online or we are not able to reach it.'
+      redirect_to '/server/new' and return
+    end
+    @server.save
     redirect_to '/user/'
   end
 
@@ -65,7 +72,12 @@ class ServersController < ApplicationController
       redirect_to '/users/sign_in'
     end
     @server = Server.find(params[:id])
-
+    begin
+      RestClient.get 'http://minecraftpingerapi.herokuapp.com/ping.php?ip='+@server.ip+"&port="+@server.port
+    rescue
+      flash[:error] = 'The server you are trying to add is not currently online or we are not able to reach it.'
+      redirect_to '/server/new' and return
+    end
     if @server.update_attributes(server_params)
       redirect_to '/server/' + params[:id] + "/edit"
       return

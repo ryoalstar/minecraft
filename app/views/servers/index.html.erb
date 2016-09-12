@@ -82,7 +82,7 @@
                 <div id="spacer" style="height: 5px">
 
                 </div>
-                &nbsp;&nbsp;<span class="badge badge-green"><%= s.status == 1 ? 'Online' : 'Offline' %></span>&nbsp;<a href="/version/1_10_2/" class="label label-info"><%= s.version %></a>&nbsp;<strong><%= s.ip %>:<%=s.port%></strong>
+                &nbsp;&nbsp;<span class="badge <%= s.status == 1 ? 'badge-green' : 'badge-red'%>"><%= s.status == 1 ? 'Online' : 'Offline' %></span>&nbsp;<a href="/version/1_10_2/" class="label label-info"><%= s.version %></a>&nbsp;<strong><%= s.ip %>:<%=s.port%></strong>
               </td>
               <td><%= s.players %>/<%= s.slots%></td>
               <td><span class="badge badge-green">100%</span></td>
