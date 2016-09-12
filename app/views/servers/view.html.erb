@@ -13,9 +13,6 @@
       <div class="panel panel-default">
         <div class="panel-body">
 
-          <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
-          <%= content_tag(:div, flash[:error], :id => "flash_error", :style => 'color: red') if flash[:error] %>
-
 
           <% if @server.banner.url != 'nobanner' && !@server.banner.nil? %>
               <a href = '/server/<%= @server.id%>'><%= image_tag @server.banner.url, :style => 'width:460px; height:68px;'%> </a>
@@ -38,8 +35,27 @@
           <h3>
             <div style="text-align: center;">Vote for <%= @server.name %></div>
           </h3><br>
-          <%= recaptcha_tags %><br><br>
-          <div style="text-align: center;"><input type="submit" name="commit" value="Vote For Server" class="btn btn-success btn-sm add-btn"></div>
+          <div style="text-align: center;">
+            <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
+            <%= content_tag(:div, flash[:error], :id => "flash_error", :style => 'color: red') if flash[:error] %><br>
+          </div>
+          <%= bootstrap_form_for(@server, as: 'server', url: '/server/'+@server.id.to_s+'/vote/') do |f| %>
+            <%= recaptcha_tags %><br>
+            <div style="text-align: center;">
+                <div class="form-group">
+                  <div class = 'row'>
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <%= f.text_field :username, label: 'Username', :value => '', autofocus: true %>
+                    </div>
+                  </div>
+                </div>
+              <div class="form-group">
+                <input type="submit" name="commit" value="Vote For Server" class="btn btn-success btn-sm add-btn">
+              </div>
+            </div>
+          <% end %>
+
+
           <hr>
           <ul class="nav nav-tabs">
             <li class = "active"><a data-toggle="pill" href="#menu1" >Comments</a></li>

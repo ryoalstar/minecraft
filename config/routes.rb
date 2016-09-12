@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   get '/terms' => 'static#terms_of_service'
   get '/server/new' => 'servers#new'
   post '/server/new' => 'servers#create'
+  patch '/server/:id/vote' => 'servers#vote'
   get '/server/:id/' => 'servers#view'
   get '/server/:id/edit' => 'servers#edit'
   patch '/server/:id/edit' => 'servers#save'
   get '/server/:id/destroy' => 'servers#destroy'
-  post '/server/:id/' => 'servers#vote'
 
   get '/user' => 'users#my_servers'
 

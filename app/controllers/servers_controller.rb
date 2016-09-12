@@ -31,14 +31,26 @@ class ServersController < ApplicationController
 
   def vote
     @server = Server.find(params[:id])
-    if verify_solvemedia_puzzle
-      flash[:notice] = "Succesfully voted!"
+
+    if verify_recaptcha
+
+      vote = Vote.where("server = ? AND ip = ? AND time > UNIX_TIMESTAMP() - 43200", @server.id, request.remote_ip)
+
+      unless vote.nil?
+        flash[:error] = "You have already voted for this server within the last 12 hours!"
+        redirect_to('/server/'+params[:id]) and return
+      end
+
+      flash[:notice] = "You have succesfully voted for " + @server.name
+      @server.votes += 1
+      @server.save
+
+      @vote = Vote.new(:ip => request.remote_ip, :username => params[:server][:username], :server => @server.id, :time => Time.now.to_i)
+      @vote.save
     else
-      flash[:error] = "Error, invalid voting captcha!"
+      flash[:error] = "The captcha could not be verified."
     end
-
     redirect_to('/server/'+params[:id])
-
   end
 
   def edit
@@ -75,4 +87,5 @@ class ServersController < ApplicationController
   def server_params
     params.require(:server).permit(:name, :ip, :port, :description, :banner, :short_description)
   end
+
 end
