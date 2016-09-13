@@ -21,8 +21,7 @@ Rails.application.routes.draw do
 
   get '/user' => 'users#my_servers'
 
-
-  #api/?object=votes&element=claim&key={ServerKey}&username={Username}
-  get '/api/:id/votes/claim' => 'api#check'
-  post '/api/:id/votes/claim' => 'api#claim'
+  get 'api' => 'static#api'
+  get '/api/votes/claim' => 'api#check'
+  post '/api/votes/claim' => 'api#claim'
 end

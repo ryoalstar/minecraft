@@ -1,18 +1,14 @@
 class ApiController < ApplicationController
 
   def check
-    if params[:key].nil? or params[:id].nil? or params[:username].nil?
+    if params[:key].nil? or params[:username].nil?
       render :nothing => true, :status => 400
     end
 
-    @server = Server.find(params[:id])
+    @server = Server.where("api_key = ?", params[:key]).first
 
     if @server.nil?
       render :nothing => true, :status => 404
-    end
-
-    unless @server.api_key.eql? params[:key]
-      render :nothing => true, :status => 403
     end
 
     vote = Vote.where("server = ? AND username = ? UNIX_TIMESTAMP() - time < 43200", @server.id, params[:username])
@@ -29,18 +25,14 @@ class ApiController < ApplicationController
   end
 
   def claim
-    if params[:key].nil? or params[:id].nil? or params[:username].nil?
+    if params[:key].nil? or params[:username].nil?
       render :nothing => true, :status => 400
     end
 
-    @server = Server.find(params[:id])
+    @server = Server.where("api_key = ?", params[:key]).first
 
     if @server.nil?
       render :nothing => true, :status => 404
-    end
-
-    unless @server.api_key.eql? params[:key]
-      render :nothing => true, :status => 403
     end
 
     vote = Vote.where("server = ? AND username = ? UNIX_TIMESTAMP() - time < 43200", @server.id, params[:username])

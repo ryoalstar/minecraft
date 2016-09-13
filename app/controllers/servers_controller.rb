@@ -21,7 +21,8 @@ class ServersController < ApplicationController
     if current_user.nil?
       redirect_to '/users/sign_in'
     end
-    @server = Server.new(server_params.merge(:owner => current_user.username, :last_online => Time.now.to_i))
+    randomKey = ('a'..'z').to_a.shuffle[0,25].join
+    @server = Server.new(server_params.merge(:owner => current_user.username, :last_online => Time.now.to_i, :api_key => randomKey))
     begin
       RestClient.get 'http://minecraftpingerapi.herokuapp.com/ping.php?ip='+@server.ip+"&port="+@server.port
     rescue
