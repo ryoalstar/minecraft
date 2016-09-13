@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root to: 'servers#index'
 
+  get '/page/:page' => "servers#index"
 
   get '/faq' => 'faq#index'
   get '/contact' => 'contact#new'
@@ -20,4 +21,8 @@ Rails.application.routes.draw do
 
   get '/user' => 'users#my_servers'
 
+
+  #api/?object=votes&element=claim&key={ServerKey}&username={Username}
+  get '/api/:id/votes/claim' => 'api#check'
+  post '/api/:id/votes/claim' => 'api#claim'
 end
