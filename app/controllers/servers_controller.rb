@@ -2,6 +2,10 @@ class ServersController < ApplicationController
 
   def index
 
+    if params[:page].eql? '1'
+      redirect_to root_path, :status => 301
+    end
+
     @servers = Server.paginate(:page => params[:page], :per_page => 15).includes(:tags).order("votes DESC, players DESC")
     @serverCount = @servers.count
     @page = params[:page].to_i - 1
@@ -31,7 +35,8 @@ class ServersController < ApplicationController
     rescue => e
       puts e.to_s
       flash[:error] = 'The server you are trying to add is not currently online or we are not able to reach it.'
-      redirect_to '/server/new' and return
+
+      render 'servers/new' and return
     end
     @server.save
     redirect_to '/user/'
