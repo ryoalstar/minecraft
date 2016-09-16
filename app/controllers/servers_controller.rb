@@ -96,6 +96,28 @@ class ServersController < ApplicationController
     redirect_to '/user/'
   end
 
+  def version
+    @page = params[:page].to_i - 1
+    if @page < 0
+      @page = 0
+    end
+    params[:version] = params[:version].gsub('_', ".")
+    puts params[:version]
+    @servers = Server.where("version LIKE ?", '%' + params[:version] + '%').paginate(:page => params[:page], :per_page => 15).includes(:tags).order("votes DESC, players DESC")
+    params[:version] = params[:version].gsub('.', "_")
+    render 'servers/index'
+  end
+
+  def type
+    @page = params[:page].to_i - 1
+    if @page < 0
+      @page = 0
+    end
+    type = params[:type]
+    @servers = Server.joins(:tags).where("tags.tag = ?", type).paginate(:page => params[:page], :per_page => 15).order("votes DESC, players DESC")
+    puts @servers.count.to_s + " fuxkin serbas"
+    render 'servers/index'
+  end
 
   def server_params
     params.require(:server).permit(:name, :ip, :port, :description, :banner, :short_description)

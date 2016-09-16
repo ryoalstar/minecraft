@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   root to: 'servers#index'
 
   get '/page/:page' => "servers#index"
+  get '/version/:version' => 'servers#version'
+  get '/version/:version/:page' => 'servers#version'
+
+  get '/type/:type' => 'servers#type'
 
   get '/faq' => 'faq#index'
   get '/contact' => 'contact#new'
@@ -20,6 +24,7 @@ Rails.application.routes.draw do
   get '/server/:id/destroy' => 'servers#destroy'
 
   get '/user' => 'users#my_servers'
+
 
   get 'api' => 'static#api'
   get '/api/votes/claim' => 'api#check'

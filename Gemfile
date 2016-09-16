@@ -24,6 +24,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'mysql2'
 gem 'high_voltage'
+gem 'bootstrap-multiselect-rails'
 gem 'chosen-rails'
 gem 'recaptcha', require: "recaptcha/rails"
 
