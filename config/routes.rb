@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/contact' => 'contact#new'
   post '/contact' => 'contact#submit'
   get '/privacy-policy' => 'static#privacy_policy'
+  get '/about' => 'static#about'
   get '/terms' => 'static#terms_of_service'
   get '/server/new' => 'servers#new'
   post '/server/new' => 'servers#create'
@@ -24,7 +25,6 @@ Rails.application.routes.draw do
   get '/server/:id/destroy' => 'servers#destroy'
 
   get '/user' => 'users#my_servers'
-
 
   get 'api' => 'static#api'
   get '/api/votes/claim' => 'api#check'
