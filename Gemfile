@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap-sass'
 gem 'sass-rails', '~> 5.0'
+gem 'sitemap_generator'
 gem 'meta-tags'
 gem 'redis'
 gem 'fog-aws'
@@ -24,8 +25,6 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'mysql2'
 gem 'high_voltage'
-gem 'bootstrap-multiselect-rails'
-gem 'chosen-rails'
 gem 'recaptcha', require: "recaptcha/rails"
 
 group :development, :test do

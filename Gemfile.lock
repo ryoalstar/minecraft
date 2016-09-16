@@ -60,8 +60,6 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-multiselect-rails (0.9.9)
-      rails (>= 4.0.0)
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
@@ -76,10 +74,6 @@ GEM
       xpath (~> 2.0)
     childprocess (0.5.8)
       ffi (~> 1.0, >= 1.0.11)
-    chosen-rails (1.5.2)
-      coffee-rails (>= 3.2)
-      railties (>= 3.0)
-      sass-rails (>= 3.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -400,6 +394,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
+    sitemap_generator (5.0.5)
+      builder
     solvemedia (1.0.1)
     spring (1.4.3)
     spring-commands-rspec (1.0.4)
@@ -447,12 +443,10 @@ DEPENDENCIES
   asset_sync
   aws-sdk (>= 2.0.34)
   better_errors
-  bootstrap-multiselect-rails
   bootstrap-sass
   bootstrap_form
   byebug
   capybara
-  chosen-rails
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise
@@ -479,6 +473,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
+  sitemap_generator
   solvemedia
   spring
   spring-commands-rspec
