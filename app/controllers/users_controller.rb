@@ -15,6 +15,9 @@ class UsersController < ApplicationController
   end
 
   def my_servers
+    if current_user.username.nil?
+      current_user.username = current_user.email
+    end
     @servers = Server.where("owner = ?", current_user.username)
   end
 

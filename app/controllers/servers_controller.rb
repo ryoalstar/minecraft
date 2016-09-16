@@ -22,10 +22,14 @@ class ServersController < ApplicationController
       redirect_to '/users/sign_in'
     end
     randomKey = ('a'..'z').to_a.shuffle[0,25].join
+
+    #Do existance checking
+
     @server = Server.new(server_params.merge(:owner => current_user.username, :last_online => Time.now.to_i, :api_key => randomKey))
     begin
-      RestClient.get 'http://minecraftpingerapi.herokuapp.com/ping.php?ip='+@server.ip+"&port="+@server.port
-    rescue
+      RestClient.get 'http://minecraftpingerapi.herokuapp.com/ping.php?ip='+@server.ip+"&port="+@server.port.to_s
+    rescue => e
+      puts e.to_s
       flash[:error] = 'The server you are trying to add is not currently online or we are not able to reach it.'
       redirect_to '/server/new' and return
     end
