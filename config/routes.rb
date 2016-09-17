@@ -4,11 +4,16 @@ Rails.application.routes.draw do
 
   root to: 'servers#index'
 
+  post '/' => 'servers#search_redirect'
+
+  get '/search/:search/' => 'servers#search'
+
   get '/page/:page' => "servers#index"
   get '/version/:version' => 'servers#version'
   get '/version/:version/:page' => 'servers#version'
 
   get '/type/:type' => 'servers#type'
+  get '/type/:type/:page' => 'servers#type'
 
   get '/faq' => 'faq#index'
   get '/contact' => 'contact#new'

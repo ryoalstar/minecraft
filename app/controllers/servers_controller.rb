@@ -14,6 +14,24 @@ class ServersController < ApplicationController
     end
   end
 
+  def search_redirect
+    redirect_to '/search/'+ params[:search], :status => 301
+  end
+
+  def search
+    if params[:page].eql? '1'
+      redirect_to root_path, :status => 301
+    end
+
+    @servers = Server.where("name LIKE ?", '%'+params[:search]+'%').paginate(:page => params[:page], :per_page => 15).includes(:tags).order("votes DESC, players DESC")
+    @serverCount = @servers.count
+    @page = params[:page].to_i - 1
+    if @page < 0
+      @page = 0
+    end
+    render 'servers/index'
+  end
+
   def new
     if current_user.nil?
       redirect_to '/users/sign_in'
@@ -26,6 +44,15 @@ class ServersController < ApplicationController
       redirect_to '/users/sign_in'
     end
     randomKey = ('a'..'z').to_a.shuffle[0,25].join
+
+    listOfTags = getListOfTags(params)
+
+
+    puts "The list of tags has " + listOfTags.count.to_i.to_s + " entries"
+
+    listOfTags.each do |t|
+      puts "Motherfucker i got mad tags"
+    end
 
     #Do existance checking
 
@@ -40,6 +67,15 @@ class ServersController < ApplicationController
     end
     @server.save
     redirect_to '/user/'
+  end
+
+  def getListOfTags(params)
+    array = Array.new(30)
+    unless params[:auth].nil?
+      puts "Motherfucker"
+      array.inject(-1, 'Auth')
+    end
+    array
   end
 
   def view
