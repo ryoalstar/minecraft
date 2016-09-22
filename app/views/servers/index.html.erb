@@ -49,7 +49,6 @@
 
 
   <h2 class="page_header" style="font-size:30px; text-align:left">Minecraft PE Server List<% if @page == 0 %> <% else %>, page <%= (@page.to_i + 1) %><%end%></h2>
-  <% cache do %>
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
@@ -93,7 +92,7 @@
 
              <td><%= s.votes %></td>
           </tr>
-          <% end %>
+
           </tbody>
         </table>
 
