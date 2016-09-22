@@ -25,6 +25,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'mysql2'
 gem 'high_voltage'
+gem 'cached_counts'
 
 gem 'recaptcha', require: "recaptcha/rails"
 
