@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160916144020) do
+ActiveRecord::Schema.define(version: 20160922032200) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "server_id", limit: 4,     default: 0, null: false
@@ -79,6 +79,9 @@ ActiveRecord::Schema.define(version: 20160916144020) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "owner_id",            limit: 4
+    t.integer  "pinged_count",        limit: 4
+    t.integer  "pings_succeeded",     limit: 4
+    t.integer  "pings_failed",        limit: 4
   end
 
   add_index "servers", ["ip"], name: "ip", unique: true, using: :btree
