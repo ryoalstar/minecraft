@@ -29,16 +29,16 @@ Rails.application.configure do
   config.assets.enabled = true
   config.assets.initialize_on_precompile = true
 
-
   config.action_mailer.smtp_settings = {
-    address: "smtp.sendgrid.net",
-    port: 587,
-    domain: 'minecraft-pe-servers.com',
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: 'app54808245@heroku.com',
-    password: 'hxhdkaq89856'
+      address: 'email-smtp.us-east-1.amazonaws.com',
+      port: 587,
+      domain: 'minecraft-pe-servers.com',
+      authentication: "plain",
+      enable_starttls_auto: true,
+      user_name: 'AKIAJNI6YO2ZDTVT73ZA',
+      password: 'Avjw3uPJFPdtQZwCikva8pgVFz/fkN4H/APHwmdlOx5I'
   }
+
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp

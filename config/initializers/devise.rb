@@ -12,7 +12,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'Noreply@minecraft-pe-servers.com'
+  config.mailer_sender = 'Support@minecraft-pe-servers.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
