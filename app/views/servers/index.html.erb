@@ -49,6 +49,7 @@
 
 
   <h2 class="page_header" style="font-size:30px; text-align:left">Minecraft PE Server List<% if @page == 0 %> <% else %>, page <%= (@page.to_i + 1) %><%end%></h2>
+  <% cache do %>
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
@@ -74,7 +75,7 @@
                   <% if s.banner.url != 'nobanner' && !s.banner.nil? %>
                    <a href = '/server/<%= s.id%>'><%= image_tag s.banner.url, :style => 'width:460px; height:68px;'%> </a>
                   <% else %>
-                    <% if s.banner_old != 'nobanner'%>
+                    <% if !s.banner_old.nil? && s.banner_old != 'nobanner'%>
                           <a href = '/server/<%= s.id%>'><%= image_tag 'https://cdn.minecraft-pe-servers.com/banners/' + s.banner_old,  :style => 'width:460px; height:68px;' %></a>
                       <% else %>
                           <a href = '/server/<%= s.id%>'><h4 style="color: black"><%= s.name %></h4></a>
@@ -97,6 +98,7 @@
         </table>
 
       </div>
+      <% end %>
 
       <div id = 'pagination_block' style="text-align: center">
         <%= will_paginate :class => 'pagination', inner_window: 2, outer_window: 1, :renderer => BootstrapPagination::Rails %>
