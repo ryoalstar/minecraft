@@ -49,6 +49,7 @@
 
 
   <h2 class="page_header" style="font-size:30px; text-align:left">Minecraft PE Server List<% if @page == 0 %> <% else %>, page <%= (@page.to_i + 1) %><%end%></h2>
+
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
@@ -92,13 +93,13 @@
 
              <td><%= s.votes %></td>
           </tr>
-
+          <% end %>
           </tbody>
         </table>
 
       </div>
 
-  <% end %>
+
       <div id = 'pagination_block' style="text-align: center">
         <%= will_paginate :class => 'pagination', inner_window: 2, outer_window: 1, :renderer => BootstrapPagination::Rails %>
       </div>
