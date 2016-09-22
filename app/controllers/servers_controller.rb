@@ -50,10 +50,6 @@ class ServersController < ApplicationController
 
     puts "The list of tags has " + listOfTags.count.to_i.to_s + " entries"
 
-    listOfTags.each do |t|
-      puts "Motherfucker i got mad tags"
-    end
-
     #Do existance checking
 
     @server = Server.new(server_params.merge(:owner_id => current_user.id, :last_online => Time.now.to_i, :api_key => randomKey))
