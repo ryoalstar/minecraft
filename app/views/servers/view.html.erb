@@ -1,6 +1,7 @@
+
 <% content_for :title, @server.name + " - Minecraft PE Server List" %>
 <%= disqus_init %>
-
+<% cache do %>
 <div class="container">
 
   <div class="row">
@@ -125,3 +126,4 @@
 
 
 </div>
+  <% end %>
