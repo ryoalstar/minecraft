@@ -1,4 +1,6 @@
+
 <nav class="navbar navbar-default primary-navbar">
+  <% cache do %>
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-nav">
@@ -9,6 +11,7 @@
       </button>
       <a class="navbar-brand" href="/">Minecraft PE Servers</a>
     </div>
+    <% end %>
     <div class="collapse navbar-collapse" id="primary-nav">
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -28,6 +31,7 @@
   </div>
 </nav>
 
+<% cache do %>
 <nav class="seconday-nav">
   <div class="container">
     <div class="btn-group btn-group-justified">
@@ -39,3 +43,4 @@
     </div>
   </div>
 </nav>
+<% end %>

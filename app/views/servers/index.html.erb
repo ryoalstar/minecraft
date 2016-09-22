@@ -47,9 +47,9 @@
 
       <% end %>
 
-
-  <h2 class="page_header" style="font-size:30px; text-align:left">Minecraft PE Server List<% if @page == 0 %> <% else %>, page <%= (@page.to_i + 1) %><%end%></h2>
   <% cache do %>
+  <h2 class="page_header" style="font-size:30px; text-align:left">Minecraft PE Server List<% if @page == 0 %> <% else %>, page <%= (@page.to_i + 1) %><%end%></h2>
+
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
@@ -98,12 +98,12 @@
         </table>
 
       </div>
-      <% end %>
+
 
       <div id = 'pagination_block' style="text-align: center">
         <%= will_paginate :class => 'pagination', inner_window: 2, outer_window: 1, :renderer => BootstrapPagination::Rails %>
       </div>
-
+  <% end %>
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-9099839324683798"
