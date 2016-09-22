@@ -45,10 +45,10 @@ class ServersController < ApplicationController
     end
     randomKey = ('a'..'z').to_a.shuffle[0,25].join
 
-    listOfTags = getListOfTags(params)
+    #listOfTags = getListOfTags(params)
 
 
-    puts "The list of tags has " + listOfTags.count.to_i.to_s + " entries"
+   # puts "The list of tags has " + listOfTags.count.to_i.to_s + " entries"
 
     #Do existance checking
 
@@ -65,14 +65,14 @@ class ServersController < ApplicationController
     redirect_to '/user/'
   end
 
-  def getListOfTags(params)
-    array = Array.new(30)
-    unless params[:auth].nil?
-      puts "Motherfucker"
-      array.inject(-1, 'Auth')
-    end
-    array
-  end
+  #def getListOfTags(params)
+  #  array = Array.new(30)
+  #  unless params[:auth].nil?
+  #    puts "Motherfucker"
+  #    array.inject(-1, 'Auth')
+  #  end
+   # array
+  #end
 
   def view
     @server = Server.find(params[:id])
