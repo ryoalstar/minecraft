@@ -8,12 +8,12 @@ Rails.application.routes.draw do
 
   get '/search/:search/' => 'servers#search'
 
-  get '/page/:page' => "servers#index"
+  get '/servers/list/:page' => "servers#index"
   get '/version/:version' => 'servers#version'
   get '/version/:version/:page' => 'servers#version'
 
-  get '/type/:type' => 'servers#type'
-  get '/type/:type/:page' => 'servers#type'
+  get '/servers/:type' => 'servers#type'
+  get '/servers/:type/:page' => 'servers#type'
 
   get '/faq' => 'faq#index'
   get '/contact' => 'contact#new'
