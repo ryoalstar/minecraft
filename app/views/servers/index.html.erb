@@ -87,7 +87,8 @@
                 &nbsp;&nbsp;<span class="badge <%= s.status == 1 ? 'badge-green' : 'badge-red'%>"><%= s.status == 1 ? 'Online' : 'Offline' %></span>&nbsp;<a href="/version/<%= s.version.gsub(' alpha', '').gsub(' beta', '').gsub('.', '_').gsub('v', '').gsub(' ', '_') %>" class="label label-info"><%= s.version %></a>&nbsp;<strong><%= s.ip %>:<%=s.port%></strong>
               </td>
               <td><%= s.players %>/<%= s.slots%></td>
-              <td><span class="badge badge-green"><%= ((s.pings_succeeded.to_f / s.pinged_count.to_f) * 100).to_i %>%</span></td>
+              <% uptime = ((s.pings_succeeded.to_f / s.pinged_count.to_f) * 100).to_i %>
+              <td><span class="badge <%= (uptime > 50 ? 'badge-green' : 'badge-red') %>"><%= uptime %>%</span></td>
 
              <td><%= s.votes %></td>
           </tr>
