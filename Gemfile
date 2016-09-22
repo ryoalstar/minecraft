@@ -25,6 +25,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'mysql2'
 gem 'high_voltage'
+
 gem 'recaptcha', require: "recaptcha/rails"
 
 group :development, :test do
@@ -48,6 +49,7 @@ end
 
 group :production do
   gem 'puma'
+  gem 'newrelic_rpm'
 end
 
 group :test do
