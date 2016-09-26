@@ -31,12 +31,19 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user = User.where(:email => data["email"]).first
 
      unless user
-         user = User.create(username: data["name"],
-            email: data["email"],
-            password: Devise.friendly_token[0,20]
-         )
+       if user and user.confirmed?
+         user.provider = auth.provider
+         user.uid = auth.uid
+         return user
+       end
+       where(auth.slice(:provider, :uid)).first_or_create do |user|
+         user.skip_confirmation!
+         user.provider = auth.provider
+         user.uid = auth.uid
+         user.email = auth.info.email
+         user.password = Devise.friendly_token[0,20]
+       end
      end
-    user
   end
 
   def failure
