@@ -26,6 +26,8 @@ gem 'omniauth-facebook'
 gem 'mysql2'
 gem 'high_voltage'
 gem 'cached_counts'
+gem 'amqp'
+gem 'eventmachine'
 
 gem 'recaptcha', require: "recaptcha/rails"
 

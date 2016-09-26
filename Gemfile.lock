@@ -38,6 +38,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    amq-protocol (2.0.1)
+    amqp (1.6.0)
+      amq-protocol (>= 2.0.1)
+      eventmachine
     arel (6.0.3)
     asset_sync (1.2.1)
       activemodel
@@ -101,6 +105,7 @@ GEM
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
+    eventmachine (1.2.0.1)
     excon (0.52.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
@@ -443,6 +448,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  amqp
   asset_sync
   aws-sdk (>= 2.0.34)
   better_errors
@@ -455,6 +461,7 @@ DEPENDENCIES
   database_cleaner
   devise
   disqus_rails
+  eventmachine
   factory_girl_rails
   faker
   fog-aws

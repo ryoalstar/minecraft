@@ -43,6 +43,8 @@ class ServersController < ApplicationController
     if current_user.nil?
       redirect_to '/users/sign_in'
     end
+
+
     randomKey = ('a'..'z').to_a.shuffle[0,25].join
 
     #listOfTags = getListOfTags(params)
@@ -53,16 +55,55 @@ class ServersController < ApplicationController
     #Do existance checking
 
     @server = Server.new(server_params.merge(:owner_id => current_user.id, :last_online => Time.now.to_i, :api_key => randomKey))
+
+
+    existanceCheck = Server.where("ip = ? AND port = ?", server_params[:ip], server_params[:port]).first
+
+    if !existanceCheck.nil?
+      flash[:error] = 'The server you\'re trying to register is already registered with us!'
+      render 'servers/new' and return
+    end
+
     begin
-      RestClient.get 'http://minecraftpingerapi.herokuapp.com/ping.php?ip='+@server.ip+"&port="+@server.port.to_s
+      response = RestClient.get 'http://minecraftpingerapi.herokuapp.com/ping.php?ip='+@server.ip+"&port="+@server.port.to_s
+      jsonObj = JSON.load(response)
+      players = jsonObj['Players'].to_i
+      slots = jsonObj['MaxPlayers'].to_i
+      version = jsonObj['Version']
+      @server.players = players
+      @server.slots = slots
+      @server.version = version
     rescue => e
       puts e.to_s
       flash[:error] = 'The server you are trying to add is not currently online or we are not able to reach it.'
-
       render 'servers/new' and return
     end
     @server.save
     redirect_to '/user/'
+
+    if !@server.banner.nil?
+      schedule_banner_task(@server.id, @server.banner.url)
+    end
+  end
+
+
+  def schedule_banner_task(server_id, url)
+    require 'amqp'
+    EventMachine.run do
+      connection = AMQP.connect('amqp://vocgjaph:YfKSVNj4tlNT4KpfQIxA9sxoif95nlgZ@jaguar.rmq.cloudamqp.com/vocgjaph')
+      puts "Connecting to RabbitMQ. Running #{AMQP::VERSION} version of the gem..."
+
+      ch  = AMQP::Channel.new(connection)
+      q   = ch.queue("tasks")
+      x   = ch.default_exchange
+      puts '{"type": "process_banner", "server": '+server_id.to_s+', "url": '+url+'}'
+      x.publish '{"type": "process_banner", "server": '+server_id.to_s+', "url": "'+url+'"}', :routing_key => q.name
+      EventMachine.add_timer(1) do
+        connection.close {
+          EventMachine.stop
+        }
+      end
+    end
   end
 
   #def getListOfTags(params)
@@ -107,6 +148,9 @@ class ServersController < ApplicationController
       redirect_to '/users/sign_in'
     end
     @server = Server.find(params[:id])
+    if @server.owner_id != current_user.id
+      redirect_to '/user/' and return
+    end
   end
 
   def save
@@ -114,8 +158,25 @@ class ServersController < ApplicationController
       redirect_to '/users/sign_in'
     end
     @server = Server.find(params[:id])
+    if @server.nil?
+      redirect_to '/user/' and return
+    end
+
+    if @server.owner_id != current_user.id
+      redirect_to '/user/' and return
+    end
+
     begin
-      RestClient.get 'http://minecraftpingerapi.herokuapp.com/ping.php?ip='+@server.ip+"&port="+@server.port.to_s
+      response = RestClient.get 'http://minecraftpingerapi.herokuapp.com/ping.php?ip='+@server.ip+"&port="+@server.port.to_s
+      jsonObj = JSON.load(response)
+      players = jsonObj['Players'].to_i
+      slots = jsonObj['MaxPlayers'].to_i
+      version = jsonObj['Version']
+
+      @server.players = players
+      @server.slots = slots
+      @server.version = version
+      @server.save
     rescue
       flash[:error] = 'The server you are trying to add is not currently online or we are not able to reach it.'
       render 'servers/edit' and return
@@ -126,6 +187,10 @@ class ServersController < ApplicationController
     else
       redirect_to '/server/' + params[:id] + "/edit"
     end
+
+    if !@server.banner.nil?
+      schedule_banner_task(@server.id, @server.banner.url)
+    end
   end
 
   def destroy
@@ -133,6 +198,12 @@ class ServersController < ApplicationController
       redirect_to '/users/sign_in'
     end
     @server = Server.find(params[:id])
+    if @server.nil?
+      redirect_to '/user/' and return
+    end
+    if @server.owner_id != current_user.id
+      redirect_to '/user/' and return
+    end
     @server.destroy!
     redirect_to '/user/'
   end
