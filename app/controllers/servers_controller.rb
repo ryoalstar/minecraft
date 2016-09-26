@@ -83,9 +83,9 @@ class ServersController < ApplicationController
 
     if verify_recaptcha
 
-      vote = Vote.where("server = ? AND ip = ? AND time > UNIX_TIMESTAMP() - 43200", @server.id, request.remote_ip)
+      vote = Vote.where("server = ? AND ip = ? AND UNIX_TIMESTAMP() - time < 43200", @server.id, request.remote_ip).first
 
-      unless vote.nil?
+      if !vote.nil?
         flash[:error] = "You have already voted for this server within the last 12 hours!"
         redirect_to('/server/'+params[:id]) and return
       end
