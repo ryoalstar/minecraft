@@ -19,9 +19,9 @@
               <a href = '/server/<%= @server.id%>'><%= image_tag @server.banner.url, :style => 'width:460px; height:68px;'%> </a>
           <% else %>
               <% if !@server.banner_old.nil? && @server.banner_old != 'nobanner'%>
-                  <a href = '/server/<%= @server.id%>'><%= image_tag 'https://cdn.minecraft-pe-servers.com/banners/' + @server.banner_old,  :style => 'width:460px; height:68px;' %></a>
+                  <a href = '/server/<%= @server.id%>'><%= image_tag 'https://cdn.minecraft-pe-servers.com/servers/banners/' + @server.banner_old,  :style => 'width:460px; height:68px;' %></a>
               <% else %>
-                  <a href = '/server/<%= @server.id%>'><%= image_tag 'https://cdn.minecraft-pe-servers.com/banners/nobanner.png', :style => 'width:460px; height:68px;' %></a>
+                  <a href = '/server/<%= @server.id%>'><%= image_tag 'https://cdn.minecraft-pe-servers.com/servers/banners/nobanner.png', :style => 'width:460px; height:68px;' %></a>
               <% end %>
           <% end %>
 
