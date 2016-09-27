@@ -1,5 +1,6 @@
 <% content_for :title, ((defined? @version) ? "Version " + @version + " " : "") + "Minecraft PE Servers | Minecraft PE Server List" + (@page > 0 ? "- " + (@page + 1).to_s : "") %>
-<% content_for :description, ((defined? @version) ? "Version " + @version + " " : "") + "Minecraft PE Servers can be found on our Unique Minecraft PE Servers List" + (@page > 0 ? "- page " + (@page + 1).to_s : "") %>
+<% content_for :description, ((defined? @version) ? "Version " + @version + " " : "") + "Minecraft PE Servers can be found on our Unique Minecraft PE Server List" + (@page > 0 ? "- page " + (@page + 1).to_s : "") %>
+<% content_for :keywords, 'minecraft pe server list, mcpe,  minecraft pe server, minecraft pocket edition, minecraft pe multiplayer multiplayer, mcpe servers, minecraft pocket servers, mcpe server list, pocketmine, pocketmine mcpe servers'%>
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
@@ -48,7 +49,7 @@
   <% end %>
 
 
-  <h2 class="page_header" style="font-size:30px; text-align:left">Minecraft PE Server List<% if @page == 0 %> <% else %>, page <%= (@page.to_i + 1) %><%end%></h2>
+  <h1 class="page_header" style="font-size:30px; text-align:left">Minecraft PE Server List<% if @page == 0 %> <% else %>, page <%= (@page.to_i + 1) %><%end%></h1>
 
   <div class="row" itemscope itemtype="http://schema.org/ItemList">
     <meta itemprop="itemListOrder" content="http://schema.org/ItemListOrderDescending">
