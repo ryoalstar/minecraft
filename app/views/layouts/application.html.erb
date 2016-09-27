@@ -5,6 +5,27 @@
   <title><%= yield(:title) %></title>
   <meta name="description" content="">
   <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script type="application/ld+json">
+	 {
+	 "@context" : "http://schema.org",
+	 "@type" : "Organization",
+	 "name" : "Minecraft PE Server List",
+	 "url" : "https://minecraft-pe-servers.com/",
+	 "logo": "http://www.minecraft-servers-list.org/favicon.ico",
+	 "sameAs" : [
+	 "https://www.facebook.com/mcpelist/"
+	 ],
+	 "contactPoint" : [
+    { "@type" : "ContactPoint",
+      "telephone" : "+31201225930",
+      "contactType" : "customer service",
+	  "areaServed" : ["US", "NL", "UK"],
+	  "availableLanguage" : ["English","Dutch"]
+    }]
+	 }
+	</script>
 
   <%= stylesheet_link_tag 'application' %>
 
