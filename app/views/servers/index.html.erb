@@ -59,9 +59,10 @@
           <thead>
           <tr>
             <th width="8%"><i class="fa fa-list-ol"></i> Rank</th>
-            <th width="19%"><i class="fa fa-hdd-o"></i> Server</th>
+            <th width="38%"><i class="fa fa-hdd-o"></i> Server</th>
             <th width="10%"><i class="fa fa-group"></i> Players</th>
             <th width="7%"><i class="fa fa-signal"></i> Uptime</th>
+            <th width="19%"><i class="fa fa-tags"></i> Tags</th>
             <th width="6%">Votes</th>		</tr>
           </thead>
           <tbody>
@@ -98,7 +99,10 @@
                   <td><%= s.players %>/<%= s.slots%></td>
                   <% uptime = ((s.pings_succeeded.to_f / s.pinged_count.to_f) * 100).to_i %>
                   <td><span class="badge <%= (uptime > 50 ? 'badge-green' : 'badge-red') %>"><%= uptime %>%</span></td>
-
+                  <td>
+                    <% s.tags.each do | t| %>
+                        <a href="/servers/type/<%=t.tag.downcase %>" class="badge"><%= t.tag %></a>
+                    <% end %></td>
                   <td><%= s.votes %></td>
                 </tr>
               </div>
