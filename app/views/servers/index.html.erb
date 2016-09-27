@@ -83,14 +83,14 @@
                               <a href = '/server/<%= s.id%>' itemprop="url"><%= image_tag 'https://cdn.minecraft-pe-servers.com/servers/banners/' + s.banner_old,  :class => 'server_image_actual' , :title => s.name + ' Minecraft Server Listing', :alt => s.name + ' Minecraft Server Listing', :itemprop =>'image' %></a>
                           <% else %>
                               <a itemprop="url" href = '/server/<%= s.id%>'>
-                                <h4 style="color: black" itemprop="name"><%= s.name %>
+                                <h4 itemprop="name" class="server_name_header"><%= s.name %>
                                 </h4>
                               </a>
                           <% end %>
                       <% end %>
                     </div>
 
-                    <div id="spacer" style="height: 5px">
+                    <div id="spacer" class="spacer">
 
                     </div>
                     &nbsp;&nbsp;<span class="badge <%= s.status == 1 ? 'badge-green' : 'badge-red'%>"><%= s.status == 1 ? 'Online' : 'Offline' %></span>&nbsp;<a href="/version/<%= s.version.gsub(' alpha', '').gsub(' beta', '').gsub('.', '_').gsub('v', '').gsub(' ', '_') %>" class="label label-info"><%= s.version %></a>&nbsp;<strong><%= s.ip %>:<%=s.port%></strong>
