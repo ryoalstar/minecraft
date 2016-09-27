@@ -14,43 +14,44 @@
       </script>
       <br><br>
       <% if @page == 0 %>
-      <div class="panel panel-default">
+          <div class="panel panel-default">
 
-          <div class="panel-body">
-            <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
-            <h4>Welcome to the Best Minecraft Pocket Edition server list!</h4>
-            <p>You can find the most popular Minecraft PE servers to play. Find game mods like Hunger Games, Survival, Creative, and more! Discover the best multiplayer servers for Minecraft PE!</p>
-            <p>Minecraft Pocket Edition (MCPE) is the mobile verson of Minecraft developed by Mojang AB. it is available on Android, iOS, WIndows Phone, Windows 10, and Fire OS.</p>
+            <div class="panel-body">
+              <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
+              <h4>Welcome to the Best Minecraft Pocket Edition server list!</h4>
+              <p>You can find the most popular Minecraft PE servers to play. Find game mods like Hunger Games, Survival, Creative, and more! Discover the best multiplayer servers for Minecraft PE!</p>
+              <p>Minecraft Pocket Edition (MCPE) is the mobile verson of Minecraft developed by Mojang AB. it is available on Android, iOS, WIndows Phone, Windows 10, and Fire OS.</p>
+            </div>
+
           </div>
-
-      </div>
       <% end %>
     </div>
   </div>
 
   <% if @page == 0 %>
-  <div class="row">
-    <%= bootstrap_form_for(self, as: 'server', url: '', html: { multipart: true } ) do |f| %>
-      <div class="col-md-10 text-center">
-        <div class="form-group">
-          <input type="text" name="search" class="form-control input-lg" placeholder="Search for servers...">
-        </div>
+      <div class="row">
+        <%= bootstrap_form_for(self, as: 'server', url: '', html: { multipart: true } ) do |f| %>
+            <div class="col-md-10 text-center">
+              <div class="form-group">
+                <input type="text" name="search" class="form-control input-lg" placeholder="Search for servers...">
+              </div>
 
+            </div>
+            <div class="col-md-2 text-center">
+              <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg btn-block">Search</button>
+              </div>
+            </div>
+        <% end %>
       </div>
-      <div class="col-md-2 text-center">
-        <div class="form-group">
-          <button type="submit" class="btn btn-success btn-lg btn-block">Search</button>
-        </div>
-      </div>
-    <% end %>
-  </div>
 
-      <% end %>
+  <% end %>
 
 
   <h2 class="page_header" style="font-size:30px; text-align:left">Minecraft PE Server List<% if @page == 0 %> <% else %>, page <%= (@page.to_i + 1) %><%end%></h2>
 
-  <div class="row">
+  <div class="row" itemscope itemtype="http://schema.org/ItemList">
+    <meta itemprop="itemListOrder" content="http://schema.org/ItemListOrderDescending">
     <div class="col-md-12">
       <div class="panel panel-default">
         <table class="table table-bordered">
@@ -63,56 +64,63 @@
             <th width="6%">Votes</th>		</tr>
           </thead>
           <tbody>
+
           <% rank = @page.to_i * 15 %>
           <% @servers.each do | s | %>
-              <% rank = rank + 1 %>
-            <tr height="90">
-              <td>
-               <strong>#<%= rank %></strong>
-              <td>
-
-                <div style="width: 100%; height: 67px;">
-                  <% if s.banner.url != 'nobanner' && !s.banner.nil? %>
-                   <a href = '/server/<%= s.id%>'><%= image_tag s.banner.url, :style => 'width:460px; height:68px;'%> </a>
-                  <% else %>
-                    <% if !s.banner_old.nil? && s.banner_old != 'nobanner'%>
-                          <a href = '/server/<%= s.id%>'><%= image_tag 'https://cdn.minecraft-pe-servers.com/servers/banners/' + s.banner_old,  :style => 'width:460px; height:68px;' %></a>
+              <div id = "server_row_i" <%= rank.to_s%> itemprop="itemListElement">
+                <% rank = rank + 1 %>
+                <tr height="90">
+                  <td>
+                    <strong>#<%= rank %></strong>
+                  <td>
+                    <div style="width: 100%; height: 67px;">
+                      <% if s.banner.url != 'nobanner' && !s.banner.nil? %>
+                          <a itemprop="url" href = '/server/<%= s.id%>'><%= image_tag s.banner.url, :style => 'width:460px; height:68px;', :title => s.name + ' Minecraft Server Listing', :alt => s.name + ' Minecraft Server Listing'%>
+                          </a>
                       <% else %>
-                          <a href = '/server/<%= s.id%>'><h4 style="color: black"><%= s.name %></h4></a>
+                          <% if !s.banner_old.nil? && s.banner_old != 'nobanner'%>
+                              <a href = '/server/<%= s.id%>' itemprop="url"><%= image_tag 'https://cdn.minecraft-pe-servers.com/servers/banners/' + s.banner_old,  :style => 'width:460px; height:68px;', :title => s.name + ' Minecraft Server Listing', :alt => s.name + ' Minecraft Server Listing' %></a>
+                          <% else %>
+                              <a itemprop="url" href = '/server/<%= s.id%>'>
+                                <h4 style="color: black" itemprop="name"><%= s.name %>
+                                </h4>
+                              </a>
+                          <% end %>
                       <% end %>
-                  <% end %>
-                </div>
-                <div id="spacer" style="height: 5px">
+                    </div>
 
-                </div>
-                &nbsp;&nbsp;<span class="badge <%= s.status == 1 ? 'badge-green' : 'badge-red'%>"><%= s.status == 1 ? 'Online' : 'Offline' %></span>&nbsp;<a href="/version/<%= s.version.gsub(' alpha', '').gsub(' beta', '').gsub('.', '_').gsub('v', '').gsub(' ', '_') %>" class="label label-info"><%= s.version %></a>&nbsp;<strong><%= s.ip %>:<%=s.port%></strong>
-              </td>
-              <td><%= s.players %>/<%= s.slots%></td>
-              <% uptime = ((s.pings_succeeded.to_f / s.pinged_count.to_f) * 100).to_i %>
-              <td><span class="badge <%= (uptime > 50 ? 'badge-green' : 'badge-red') %>"><%= uptime %>%</span></td>
+                    <div id="spacer" style="height: 5px">
 
-             <td><%= s.votes %></td>
-          </tr>
+                    </div>
+                    &nbsp;&nbsp;<span class="badge <%= s.status == 1 ? 'badge-green' : 'badge-red'%>"><%= s.status == 1 ? 'Online' : 'Offline' %></span>&nbsp;<a href="/version/<%= s.version.gsub(' alpha', '').gsub(' beta', '').gsub('.', '_').gsub('v', '').gsub(' ', '_') %>" class="label label-info"><%= s.version %></a>&nbsp;<strong><%= s.ip %>:<%=s.port%></strong>
+                  </td>
+                  <td><%= s.players %>/<%= s.slots%></td>
+                  <% uptime = ((s.pings_succeeded.to_f / s.pinged_count.to_f) * 100).to_i %>
+                  <td><span class="badge <%= (uptime > 50 ? 'badge-green' : 'badge-red') %>"><%= uptime %>%</span></td>
+
+                  <td><%= s.votes %></td>
+                </tr>
+              </div>
           <% end %>
           </tbody>
         </table>
 
       </div>
-
-
-      <div id = 'pagination_block' style="text-align: center">
-        <%= will_paginate :class => 'pagination', inner_window: 2, outer_window: 1, :renderer => BootstrapPagination::Rails %>
-      </div>
-
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-9099839324683798"
-           data-ad-slot="5418182064"
-           data-ad-format="auto"></ins>
-      <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-
     </div>
   </div>
+
+
+  <div id = 'pagination_block' style="text-align: center">
+    <%= will_paginate :class => 'pagination', inner_window: 2, outer_window: 1, :renderer => BootstrapPagination::Rails %>
+  </div>
+
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9099839324683798"
+       data-ad-slot="5418182064"
+       data-ad-format="auto"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
 </div>
