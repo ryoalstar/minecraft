@@ -214,8 +214,8 @@ class ServersController < ApplicationController
       @page = 0
     end
     @version = params[:version] = params[:version].gsub('_', ".")
-
     @servers = Server.where("version LIKE ?", '%' + params[:version] + '%').paginate(:page => params[:page], :per_page => 15).includes(:tags).order("votes DESC, players DESC")
+    @pretag = "Version " + params[:version]
     params[:version] = params[:version].gsub('.', "_")
     render 'servers/index'
   end
@@ -250,7 +250,7 @@ class ServersController < ApplicationController
     end
     type = params[:type]
     @servers = Server.joins(:tags).where("tags.tag = ?", type).paginate(:page => params[:page], :per_page => 15).order("votes DESC, players DESC")
-    puts @servers.count.to_s + " fuxkin serbas"
+    @pretag = type.humanize
     render 'servers/index'
   end
 
