@@ -26,7 +26,7 @@
 	 ],
 	 "contactPoint" : [
     { "@type" : "ContactPoint",
-      "telephone" : "+31201225930",
+      "telephone" : "+31208082996",
       "contactType" : "customer service",
 	  "areaServed" : ["US", "NL", "UK"],
 	  "availableLanguage" : ["English","Dutch"]
@@ -53,6 +53,9 @@
 <body>
 
 <%= render('layouts/navigation') %>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
 
   <div id="content">
     <%= content_for?(:content) ? yield(:content) : yield %>

@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   get '/version/:version' => 'servers#version'
   get '/version/:version/:page' => 'servers#version'
 
-  get '/servers/:type' => 'servers#type'
-  get '/servers/:type/:page' => 'servers#type'
+  get '/servers/type/:type' => 'servers#type'
+  get '/servers/type/:type/:page' => 'servers#type'
 
   get '/faq' => 'faq#index'
   get '/contact' => 'contact#new'

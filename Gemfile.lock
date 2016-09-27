@@ -37,6 +37,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (4.0.0)
+      activerecord (>= 4.0)
     addressable (2.3.8)
     amq-protocol (2.0.1)
     amqp (1.6.0)
@@ -423,6 +425,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on
   amqp
   asset_sync
   aws-sdk (>= 2.0.34)

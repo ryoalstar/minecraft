@@ -47,6 +47,9 @@
                 <%= f.text_field :description, label: 'Description' %>
               </div>
 
+              <div class="field">
+                <%= f.select :tags, options_for_select(@tags), {}, {:multiple => true, :class => "selectpicker", "data-live-search" => "true", :style => "width:450px;"}%>
+              </div>
 
               <div class="actions ">
                 <%= f.submit 'Save Changes', :class => 'btn btn-success btn-sm add-btn' %>
@@ -62,3 +65,26 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+    $('.selectpicker').selectpicker('mobile');
+  }
+
+  $('.selectpicker').selectpicker({
+    size: 4
+  });
+
+  $(document).ready(function () {
+    $('.selectpicker').change(function () {
+
+    });
+
+    setTimeout(function() {
+      <% @server.tags.each do |t| %>
+        $('.selectpicker option[value="<%=t.tag.to_s%>"]').attr('selected','selected');
+      <% end %>
+      $('.selectpicker').selectpicker('refresh');
+    }, 1000);
+  });
+</script>
