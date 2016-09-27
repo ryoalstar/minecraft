@@ -49,7 +49,7 @@
   <% end %>
 
 
-  <h1 class="page_header" style="font-size:30px; text-align:left">Minecraft PE Server List<% if @page == 0 %> <% else %>, page <%= (@page.to_i + 1) %><%end%></h1>
+  <h1 class="page_header">Minecraft PE Server List<% if @page == 0 %> <% else %>, page <%= (@page.to_i + 1) %><%end%></h1>
 
   <div class="row" itemscope itemtype="http://schema.org/ItemList">
     <meta itemprop="itemListOrder" content="http://schema.org/ItemListOrderDescending">
@@ -74,13 +74,13 @@
                   <td>
                     <strong>#<%= rank %></strong>
                   <td>
-                    <div style="width: 100%; height: 67px;">
+                    <div>
                       <% if s.banner.url != 'nobanner' && !s.banner.nil? %>
-                          <a itemprop="url" href = '/server/<%= s.id%>'><%= image_tag s.banner.url, :style => 'width:460px; height:68px;', :title => s.name + ' Minecraft Server Listing', :alt => s.name + ' Minecraft Server Listing', :itemprop =>'image'%>
+                          <a itemprop="url" href = '/server/<%= s.id%>'><%= image_tag s.banner.url, :class => 'server_image_actual', :title => s.name + ' Minecraft Server Listing', :alt => s.name + ' Minecraft Server Listing', :itemprop =>'image'%>
                           </a>
                       <% else %>
                           <% if !s.banner_old.nil? && s.banner_old != 'nobanner'%>
-                              <a href = '/server/<%= s.id%>' itemprop="url"><%= image_tag 'https://cdn.minecraft-pe-servers.com/servers/banners/' + s.banner_old,  :style => 'width:460px; height:68px;', :title => s.name + ' Minecraft Server Listing', :alt => s.name + ' Minecraft Server Listing', :itemprop =>'image' %></a>
+                              <a href = '/server/<%= s.id%>' itemprop="url"><%= image_tag 'https://cdn.minecraft-pe-servers.com/servers/banners/' + s.banner_old,  :class => 'server_image_actual' , :title => s.name + ' Minecraft Server Listing', :alt => s.name + ' Minecraft Server Listing', :itemprop =>'image' %></a>
                           <% else %>
                               <a itemprop="url" href = '/server/<%= s.id%>'>
                                 <h4 style="color: black" itemprop="name"><%= s.name %>
@@ -111,7 +111,7 @@
   </div>
 
 
-  <div id = 'pagination_block' style="text-align: center">
+  <div id = 'pagination_block' class="align_text">
     <%= will_paginate :class => 'pagination', inner_window: 2, outer_window: 1, :renderer => BootstrapPagination::Rails %>
   </div>
 
