@@ -2,5 +2,6 @@ User-agent: *
 Disallow: /user
 Disallow: /users/sign_in
 Disallow: /users/sign_up
+Disallow: /users/password/new
 
 Sitemap: https://cdn.minecraft-pe-servers.com/sitemap.xml.gz

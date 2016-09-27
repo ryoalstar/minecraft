@@ -1,5 +1,7 @@
-
 <% content_for :title, @server.name + " - Minecraft PE Server List" %>
+<% content_for :description, 'View the details of ' + @server.name + ' Minecraft PE Server to get to know more information about it.' %>
+<% content_for :keywords, 'minecraft pe server, '+@server.name+', minecraft pe server list, mcpe servers '%>
+
 <%= disqus_init %>
 
 <div class="container">
