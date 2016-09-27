@@ -25,6 +25,7 @@ gem 'mysql2'
 gem 'high_voltage'
 gem 'cached_counts'
 gem 'amqp'
+gem 'acts-as-taggable-on'
 gem 'eventmachine'
 
 gem 'recaptcha', require: "recaptcha/rails"

@@ -37,22 +37,18 @@ class ServersController < ApplicationController
       redirect_to '/users/sign_in'
     end
     @server = Server.new
+    @tags = ["Auth", "Blockhunt", "Capture The Flag", "Cops And Robbers", "Creative", "Economy", "Factions", "Guns", "Hunger Games", "Lobby", "Minigames", "Parkour", "Prison", "PVE", "PVP", "QuakeCraft", "Roleplay", "Skyblock", "Skywars", "Spleef", "Survival", "TNT"]
+
   end
 
   def create
     if current_user.nil?
       redirect_to '/users/sign_in'
     end
-
+    @tags = ["Auth", "Blockhunt", "Capture The Flag", "Cops And Robbers", "Creative", "Economy", "Factions", "Guns", "Hunger Games", "Lobby", "Minigames", "Parkour", "Prison", "PVE", "PVP", "QuakeCraft", "Roleplay", "Skyblock", "Skywars", "Spleef", "Survival", "TNT"]
 
     randomKey = ('a'..'z').to_a.shuffle[0,25].join
 
-    #listOfTags = getListOfTags(params)
-
-
-   # puts "The list of tags has " + listOfTags.count.to_i.to_s + " entries"
-
-    #Do existance checking
 
     @server = Server.new(server_params.merge(:owner_id => current_user.id, :last_online => Time.now.to_i, :api_key => randomKey))
 
@@ -63,6 +59,13 @@ class ServersController < ApplicationController
       flash[:error] = 'The server you\'re trying to register is already registered with us!'
       render 'servers/new' and return
     end
+
+    tags = params[:server][:tags].to_a
+    tags.each do |t|
+      Tag.create(:server_id => @server.id, :tag => t)
+    end
+
+    params[:server].delete :tags
 
     begin
       response = RestClient.get 'http://minecraftpingerapi.herokuapp.com/ping.php?ip='+@server.ip+"&port="+@server.port.to_s
@@ -147,17 +150,18 @@ class ServersController < ApplicationController
     if current_user.nil?
       redirect_to '/users/sign_in'
     end
-    @server = Server.find(params[:id])
+    @server = Server.includes(:tags).find(params[:id])
     if @server.owner_id != current_user.id
       redirect_to '/user/' and return
     end
-  end
+   end
 
   def save
+
     if current_user.nil?
       redirect_to '/users/sign_in'
     end
-    @server = Server.find(params[:id])
+    @server = Server.includes(:tags).find(params[:id])
     if @server.nil?
       redirect_to '/user/' and return
     end
@@ -165,6 +169,7 @@ class ServersController < ApplicationController
     if @server.owner_id != current_user.id
       redirect_to '/user/' and return
     end
+    @tags = ["Auth", "Blockhunt", "Capture The Flag", "Cops And Robbers", "Creative", "Economy", "Factions", "Guns", "Hunger Games", "Lobby", "Minigames", "Parkour", "Prison", "PVE", "PVP", "QuakeCraft", "Roleplay", "Skyblock", "Skywars", "Spleef", "Survival", "TNT"]
 
     begin
       response = RestClient.get 'http://minecraftpingerapi.herokuapp.com/ping.php?ip='+@server.ip+"&port="+@server.port.to_s
@@ -181,7 +186,17 @@ class ServersController < ApplicationController
       flash[:error] = 'The server you are trying to add is not currently online or we are not able to reach it.'
       render 'servers/edit' and return
     end
+
+    tags = params[:server][:tags].to_a
+    Tag.where("server_id = ?", @server.id).delete_all
+    tags.each do |t|
+      Tag.create(:server_id => @server.id, :tag => t)
+    end
+
+    params[:server].delete :tags
+
     if @server.update_attributes(server_params)
+
       redirect_to '/server/' + params[:id] + "/edit"
       return
     else
@@ -255,7 +270,7 @@ class ServersController < ApplicationController
   end
 
   def server_params
-    params.require(:server).permit(:name, :ip, :port, :description, :banner, :short_description)
+    params.require(:server).permit(:name, :ip, :port, :description, :banner, :short_description, :tags => [])
   end
 
 end
