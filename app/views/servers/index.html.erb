@@ -1,4 +1,4 @@
-<% content_for :title, "Minecraft PE Servers | Minecraft PE Server List" + (@page > 0 ? "- " + (@page + 1).to_s : "") %>
+<% content_for :title, ((defined? @version) ? "Version " + @version + " " : "") + "Minecraft PE Servers | Minecraft PE Server List" + (@page > 0 ? "- " + (@page + 1).to_s : "") %>
 
 <div class="container">
   <div class="row">

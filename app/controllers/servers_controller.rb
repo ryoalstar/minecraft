@@ -213,11 +213,34 @@ class ServersController < ApplicationController
     if @page < 0
       @page = 0
     end
-    params[:version] = params[:version].gsub('_', ".")
-    puts params[:version]
+    @version = params[:version] = params[:version].gsub('_', ".")
+
     @servers = Server.where("version LIKE ?", '%' + params[:version] + '%').paginate(:page => params[:page], :per_page => 15).includes(:tags).order("votes DESC, players DESC")
     params[:version] = params[:version].gsub('.', "_")
     render 'servers/index'
+  end
+
+  def vcr
+    if current_user.nil?
+      redirect_to '/users/sign_in'
+    end
+    @server = Server.find(params[:id])
+    if @server.nil?
+      redirect_to '/user/' and return
+    end
+    if @server.owner_id != current_user.id
+      redirect_to '/user/' and return
+    end
+
+    send_data '{
+    "website": "https://minecraft-pe-servers.com",
+    "check": "https://minecraft-pe-servers.com/api/votes/claim?key='+@server.api_key+'&username={USERNAME}",
+    "claim": "https://minecraft-pe-servers.com/api/votes/claim?key='+@server.api_key+'&username={USERNAME}"
+}',  :type => 'application/vrc', :filename => 'minecraft_pe_servers.vcr',
+              :disposition => 'attachment', :status => 200
+
+    return
+
   end
 
   def type

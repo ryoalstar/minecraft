@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   patch '/server/:id/vote' => 'servers#vote'
   get '/server/:id/' => 'servers#view'
   get '/server/:id/edit' => 'servers#edit'
+  get '/server/:id/vcr' => 'servers#vcr'
   patch '/server/:id/edit' => 'servers#save'
   get '/server/:id/destroy' => 'servers#destroy'
 
