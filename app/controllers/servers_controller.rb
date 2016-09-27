@@ -232,12 +232,12 @@ class ServersController < ApplicationController
       redirect_to '/user/' and return
     end
 
-    send_data '{
+    send_data('{
     "website": "https://minecraft-pe-servers.com",
     "check": "https://minecraft-pe-servers.com/api/votes/claim?key='+@server.api_key+'&username={USERNAME}",
     "claim": "https://minecraft-pe-servers.com/api/votes/claim?key='+@server.api_key+'&username={USERNAME}"
-}',  :type => 'application/vrc', :filename => 'minecraft_pe_servers.vcr',
-              :disposition => 'attachment', :status => 200
+}',  :type => 'application/vrc', :filename => 'minecraftpeservers.vcr',
+              :disposition => 'attachment', :status => 200)
 
     return
 
