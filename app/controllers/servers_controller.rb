@@ -154,7 +154,9 @@ class ServersController < ApplicationController
     if @server.owner_id != current_user.id
       redirect_to '/user/' and return
     end
-   end
+    @tags = ["Auth", "Blockhunt", "Capture The Flag", "Cops And Robbers", "Creative", "Economy", "Factions", "Guns", "Hunger Games", "Lobby", "Minigames", "Parkour", "Prison", "PVE", "PVP", "QuakeCraft", "Roleplay", "Skyblock", "Skywars", "Spleef", "Survival", "TNT"]
+
+  end
 
   def save
 
