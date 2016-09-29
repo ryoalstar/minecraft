@@ -14,40 +14,39 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-body">
-
           <h4><i class="fa fa-question-circle"></i> Frequently Asked Questions &amp; Answers</h4>
           <hr>
           <% @questions.each do |q| %>
-                <% if q['id'] != 20 %>
-              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingOne">
-                    <h4 class="panel-title">
-                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=q['id']%>" aria-expanded="false" aria-controls="collapseOne">
-                        Q: <%= q['question'].gsub("application", "website").gsub("app", "website") %>
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapse<%=q['id']%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-                      <p><strong>Answer</strong>:<br>
-                        <%= q['answer'].gsub("application", "website").gsub("app", "website") %></p>
-                    </div>
+            <% if q['id'] != 20 %>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading<%=q['id']%>">
+                  <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=q['id']%>" aria-expanded="false" aria-controls="collapse<%=q['id']%>">
+                      Q: <%= q['question'].gsub("application", "website").gsub("app", "website") %>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapse<%=q['id']%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= q['id']%>">
+                  <div class="panel-body">
+                    <p><strong>Answer</strong>:<br>
+                      <%= q['answer'].gsub("application", "website").gsub("app", "website") %></p>
                   </div>
                 </div>
-                  </div>
-              <% end %>
+              </div>
+            </div>
             <% end %>
+          <% end %>
           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingOne">
+              <div class="panel-heading" role="tab" id="heading1337">
                 <h4 class="panel-title">
-                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1337" aria-expanded="false" aria-controls="collapseOne">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1337" aria-expanded="false" aria-controls="collapse1337">
                     Q: Where can I get the app?
                   </a>
                 </h4>
               </div>
-              <div id="collapse1337" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div id="collapse1337" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1337">
                 <div class="panel-body">
                   <p><strong>Answer</strong>:<br>
                     Obtaining the app is simple, simply visit one of the links below for your respective platform.
