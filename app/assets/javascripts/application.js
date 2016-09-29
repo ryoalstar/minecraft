@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require disqus_rails
+//= require clipboard
 //= require_tree .
 
 $(document).ready(function() {

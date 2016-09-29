@@ -95,7 +95,7 @@
                     <div id="spacer" class="spacer">
 
                     </div>
-                    &nbsp;&nbsp;<span class="badge <%= s.status == 1 ? 'badge-green' : 'badge-red'%>"><%= s.status == 1 ? 'Online' : 'Offline' %></span>&nbsp;<a href="/version/<%= s.version.gsub(' alpha', '').gsub(' beta', '').gsub('.', '_').gsub('v', '').gsub(' ', '_') %>" class="label label-info"><%= s.version %></a>&nbsp;<strong><%= s.ip %>:<%=s.port%></strong>
+                    &nbsp;&nbsp;<span class="badge <%= s.status == 1 ? 'badge-green' : 'badge-red'%>"><%= s.status == 1 ? 'Online' : 'Offline' %></span>&nbsp;<a href="/version/<%= s.version.gsub(' alpha', '').gsub(' beta', '').gsub('.', '_').gsub('v', '').gsub(' ', '_') %>" class="label label-info"><%= s.version %></a>&nbsp;<a href="#" class="domain" data-clipboard-text="<%= s.ip.to_s + ":" + s.port.to_s %>"><strong><%= s.ip %>:<%=s.port%></strong></a>
                   </td>
                   <td><%= s.players %>/<%= s.slots%></td>
                   <% uptime = ((s.pings_succeeded.to_f / s.pinged_count.to_f) * 100).to_i %>
@@ -144,3 +144,5 @@
 
 
 </div>
+
+

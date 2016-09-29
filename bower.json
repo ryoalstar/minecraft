@@ -1,0 +1,20 @@
+{
+  "name": "minecraft-pe-servers-website",
+  "homepage": "https://github.com/Renual1337/minecraft-pe-servers-website",
+  "authors": [
+    "Simon <winewater301@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "clipboard": "^1.5.12"
+  }
+}
