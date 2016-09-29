@@ -35,7 +35,7 @@
           </div>
           <hr>
           <h3>
-            <div style="text-align: center;">Vote for <%= @server.name %></div>
+            <div class="vote-title" style="">Vote for <%= @server.name %></div>
           </h3><br>
           <div style="text-align: center;">
             <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => 'color: green') if flash[:notice] %>
